@@ -18,6 +18,11 @@ class AppSizes{
   static const double fontSizeMd = 24;
   static const double fontSizeLg = 32;
 
+  // ICON SIZES
+  static const double iconSizeXs = 12;
+  static const double iconSizeSm = 16;
+  static const double iconSizeMd = 24;
+  static const double iconSizeLg = 32;
   // INPUT FIELD
   static const double inputFieldRadius = 4;
   static const double spaceBtwInputField = 16;

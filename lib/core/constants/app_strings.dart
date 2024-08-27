@@ -3,7 +3,8 @@ class AppStrings {
 
   static const String signIn = 'Đăng nhập';
   static const String createAccount = 'Tạo tài khoản';
-  static const String forgotPassword = 'Quên mật khẩu';
+  static const String forgotPassword = 'Quên mật khẩu ? ';
+  static const String headerForgotPassword = 'Quên mật khẩu';
   static const String firstName = 'Tên';
   static const String lastName = 'Họ';
   static const String emailAddress = 'Địa chỉ email';

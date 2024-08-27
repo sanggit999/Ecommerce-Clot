@@ -1,6 +1,4 @@
-import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
-import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

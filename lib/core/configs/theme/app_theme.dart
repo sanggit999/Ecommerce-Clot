@@ -1,4 +1,4 @@
-import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
+import 'package:ecommerce_clot/core/configs/theme/custom_themes/appbar_theme.dart';
 import 'package:ecommerce_clot/core/configs/theme/custom_themes/elevate_button_theme.dart';
 import 'package:ecommerce_clot/core/configs/theme/custom_themes/text_form_field_theme.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class AppTheme {
       // MAU CHINH UNG DUNG NHU APPBAR, FAB, CAC NUT BAM
       primary: Color(0xff8E6CEF),
       // MAU SAC CHO NOI DUNG VAN BAN, BIEU TUONG TREN NEN (PRIMARY)
-      onPrimary: Color(0xff272727),
+      onPrimary: Color(0xffF4F4F4),
       // MAU PHU UNG DUNG
       secondary: Color(0xff272727),
       // MAU SAC CHO NOI DUNG HIEN THI TREN NEN SECONDARY
@@ -27,11 +27,10 @@ class AppTheme {
       surface: Color(0xffFFFFFF),
       // MAU SAC CHO NOI DUNG HIEN THI TREN NEN SURFACE
       onSurface: Color(0xff272727),
-
     ),
     inputDecorationTheme: AppTextFormFieldTheme.lightInputDecoration,
     elevatedButtonTheme: AppElevateButtonTheme.elevateButton,
-
+    appBarTheme: AppAppBarTheme.appBarTheme,
   );
 
   static final dark = ThemeData(
@@ -39,7 +38,7 @@ class AppTheme {
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Color(0xff8E6CEF),
-      onPrimary: Color(0xffFFFFFF),
+      onPrimary: Color(0xff342F3F),
       secondary: Color(0xff272727),
       onSecondary: Color(0xff272727),
       error: Color(0xffFF0000),
@@ -49,6 +48,6 @@ class AppTheme {
     ),
     inputDecorationTheme: AppTextFormFieldTheme.darkInputDecoration,
     elevatedButtonTheme: AppElevateButtonTheme.elevateButton,
-
+    appBarTheme: AppAppBarTheme.appBarTheme,
   );
 }

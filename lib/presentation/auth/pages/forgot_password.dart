@@ -1,19 +1,16 @@
-import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
-import 'package:ecommerce_clot/common/widgets/rich_texts/app_rich_text.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/presentation/auth/pages/enter_password.dart';
 import 'package:flutter/material.dart';
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(hideBack: true),
+      appBar: const BasicAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 27,
@@ -28,7 +25,6 @@ class SignInPage extends StatelessWidget {
             const SizedBox(height: AppSizes.spaceBtwItem),
             _continueButton(context),
             const SizedBox(height: AppSizes.spaceBtwItem),
-            _createOne(),
           ],
         ),
       ),
@@ -37,7 +33,7 @@ class SignInPage extends StatelessWidget {
 
   Widget _signInText(BuildContext context) {
     return const Text(
-      AppStrings.signIn,
+      AppStrings.headerForgotPassword,
       style:
           TextStyle(fontSize: AppSizes.fontSizeLg, fontWeight: FontWeight.bold),
     );
@@ -45,24 +41,16 @@ class SignInPage extends StatelessWidget {
 
   Widget _emailField(BuildContext context) {
     return const TextField(
-      decoration: InputDecoration(hintText: AppStrings.emailAddress),
+      decoration: InputDecoration(hintText: AppStrings.enterEmailAddress),
     );
   }
 
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
+        // AppNavigator.pushReplacement(context, widget)
       },
       title: AppStrings.appContinue,
-    );
-  }
-
-  Widget _createOne() {
-    return AppRichText(
-      onPressed: () {},
-      text: AppStrings.dontHaveAnAccount,
-      text1: AppStrings.createOne,
     );
   }
 }
