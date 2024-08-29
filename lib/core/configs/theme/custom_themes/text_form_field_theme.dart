@@ -13,11 +13,38 @@ class AppTextFormFieldTheme {
     contentPadding: const EdgeInsets.all(AppSizes.spaceBtwInputField),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
-      borderSide: BorderSide.none,
+      borderSide: const BorderSide(
+        color: AppColors.darkLight,
+        width: 1.5,
+      ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
-      borderSide: BorderSide.none,
+      borderSide: const BorderSide(
+        color: AppColors.darkLight,
+        width: 1.5,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: AppColors.darkLight,
+        width: 1.5,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 1.5,
+      ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 1.5,
+      ),
     ),
   );
 
@@ -28,7 +55,39 @@ class AppTextFormFieldTheme {
         const TextStyle(color: AppColors.gray, fontWeight: FontWeight.w400),
     contentPadding: const EdgeInsets.all(AppSizes.spaceBtwInputField),
     border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
-        borderSide: BorderSide.none),
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: AppColors.whiteLight,
+        width: 1.5,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: AppColors.whiteLight,
+        width: 1.5,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: AppColors.whiteLight,
+        width: 1.5,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 1.5,
+      ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSizes.borderRadiusSm),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 1.5,
+      ),
+    ),
   );
 }

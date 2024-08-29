@@ -33,7 +33,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
                     color: Theme.of(context).colorScheme.onPrimary,
                     shape: BoxShape.circle),
                 child: Icon(
-                  Iconsax.arrow_left_2,
+                  Icons.arrow_back_ios_new,
                   size: AppSizes.iconSizeSm,
                   color: Theme.of(context).colorScheme.onSurface,
                 ),

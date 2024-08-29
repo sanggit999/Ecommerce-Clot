@@ -11,6 +11,7 @@ class AppStrings {
   static const String enterEmailAddress = 'Nhập địa chỉ email';
   static const String password = 'Mật khẩu';
   static const String dontHaveAnAccount = 'Chưa có tài khoản ? ';
+  static const String doYouHaveAnAccount = 'Đã có tài khoản ? ';
   static const String createOne = 'Tạo tài khoản';
   static const String reset = 'Đặt lại';
   static const String passwordResetEmailSent = 'Chúng tôi đã gửi cho bạn một email để đặt lại mật khẩu của bạn.';
