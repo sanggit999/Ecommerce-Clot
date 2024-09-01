@@ -36,6 +36,12 @@ dependencies:
   flutter_bloc: ^8.1.6
   iconsax: ^0.0.8
 
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.2.0
+  firebase_storage: ^12.2.0
+  cloud_firestore: ^5.3.0
+  dartz: ^0.10.1
+  get_it: ^7.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

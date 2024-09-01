@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "318774755159",
+    "project_id": "ecommerce-clot",
+    "storage_bucket": "ecommerce-clot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318774755159:android:6705f0c20b3935c4094812",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_clot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBNs64WOTb69TbgJOxyPyY2bPe36JzOIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

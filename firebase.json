@@ -1,0 +1,25 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "ecommerce-clot",
+          "appId": "1:318774755159:android:6705f0c20b3935c4094812",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ecommerce-clot",
+          "configurations": {
+            "android": "1:318774755159:android:6705f0c20b3935c4094812",
+            "ios": "1:318774755159:ios:75410e9355afc417094812",
+            "macos": "1:318774755159:ios:75410e9355afc417094812",
+            "web": "1:318774755159:web:82c335ab8ff8ebbc094812",
+            "windows": "1:318774755159:web:894b8e26c59432c9094812"
+          }
+        }
+      }
+    }
+  }
+}
