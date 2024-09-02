@@ -1,8 +1,10 @@
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
+import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
 import 'package:ecommerce_clot/common/widgets/rich_texts/app_rich_text.dart';
 import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.dart';
+import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/sign_in.dart';
@@ -29,10 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 27,
-            vertical: 40,
-          ),
+          padding: BasicSpacingStyle.padingAppbarHeight,
           child: Form(
             key: formKey,
             child: Column(
@@ -60,13 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _signInText(BuildContext context) {
-    return const Text(
-      AppStrings.createAccount,
-      style: TextStyle(
-        fontSize: AppSizes.fontSizeLg,
-        fontWeight: FontWeight.bold,
-      ),
-    );
+    return const BasicTextTitle(text: AppStrings.createAccount);
   }
 
   Widget _firtNameField(BuildContext context) {

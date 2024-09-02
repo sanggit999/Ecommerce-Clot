@@ -4,7 +4,7 @@ class AppStrings {
   static const String signIn = 'Đăng nhập';
   static const String createAccount = 'Tạo tài khoản';
   static const String forgotPassword = 'Quên mật khẩu ? ';
-  static const String headerForgotPassword = 'Quên mật khẩu';
+  static const String titleForgotPassword = 'Quên mật khẩu';
   static const String firstName = 'Tên';
   static const String lastName = 'Họ';
   static const String emailAddress = 'Địa chỉ email';
@@ -15,7 +15,7 @@ class AppStrings {
   static const String createOne = 'Tạo tài khoản';
   static const String reset = 'Đặt lại';
   static const String passwordResetEmailSent = 'Chúng tôi đã gửi cho bạn một email để đặt lại mật khẩu của bạn.';
-  static const String tellUsAboutYourself ='Hãy cho chúng tôi biết về bản thân bạn';
+  static const String tellUsAboutYourself ='Hãy cho chúng tôi biết về bản thân bạn ?';
   static const String whoDoYouShopFor ='Bạn mua sắm cho ai ?';
   static const String howOldAreYou = 'Bạn bao nhiêu tuổi ?';
   static const String men = 'Nam';

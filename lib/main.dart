@@ -1,5 +1,6 @@
 import 'package:ecommerce_clot/core/configs/theme/app_theme.dart';
 import 'package:ecommerce_clot/firebase_options.dart';
+import 'package:ecommerce_clot/presentation/auth/bloc/gender_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/bloc/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => SplashCubit()..appStarted()),
+        BlocProvider(create: (_)=>GenderSelectionCubit()),
       ],
       child: MaterialApp(
         title: 'Ecommerce Clot',

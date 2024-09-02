@@ -1,6 +1,8 @@
+import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
 import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.dart';
+import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +23,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       appBar: const BasicAppbar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 27,
-          vertical: 40,
-        ),
+        padding: BasicSpacingStyle.padingAppbarHeight,
         child: Form(
           key: formKey,
           child: Column(
@@ -44,13 +43,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   Widget _signInText(BuildContext context) {
-    return const Text(
-      AppStrings.headerForgotPassword,
-      style: TextStyle(
-        fontSize: AppSizes.fontSizeLg,
-        fontWeight: FontWeight.bold,
-      ),
-    );
+    return const BasicTextTitle(text: AppStrings.titleForgotPassword);
   }
 
   Widget _emailAddressField(BuildContext context) {
