@@ -1,3 +1,4 @@
+import 'package:ecommerce_clot/common/helper/bottomsheet/app_bottomsheet.dart';
 import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
@@ -5,7 +6,10 @@ import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
+import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/bloc/age_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/bloc/gender_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/widgets/ages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,28 +21,35 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: const BasicAppbar(),
-      body: Column(
-        children: [
-          Padding(
-            padding: BasicSpacingStyle.padingAppbarHeight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _tellUs(),
-                const SizedBox(height: AppSizes.defaultSpace),
-                _whoShop(),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _gender(context),
-                const SizedBox(height: AppSizes.defaultSpace + 10),
-                _howOld(),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _age(context)
-              ],
-            ),
-          ),
-          const Spacer(),
-          _finishButton(context),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => GenderSelectionCubit()),
+          BlocProvider(create: (_) => AgesDisplayCubit()),
+          BlocProvider(create: (_) => AgeSelectionCubit()),
         ],
+        child: Column(
+          children: [
+            Padding(
+              padding: BasicSpacingStyle.padingAppbarHeight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _tellUs(),
+                  const SizedBox(height: AppSizes.defaultSpace),
+                  _whoShop(),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  _gender(context),
+                  const SizedBox(height: AppSizes.defaultSpace + 10),
+                  _howOld(),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  _age(context)
+                ],
+              ),
+            ),
+            const Spacer(),
+            _finishButton(context),
+          ],
+        ),
       ),
     );
   }
@@ -110,29 +121,45 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
   }
 
   Widget _age(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('OK');
-      },
-      child: Container(
-        height: 50,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BasicTextTitle(
-              text: AppStrings.ageRange,
-              fontSize: AppSizes.fontSizeSm,
-              fontWeight: FontWeight.w400,
+    return BlocBuilder<AgeSelectionCubit, String>(
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () {
+            AppBottomsheet.display(
+                context,
+                MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(
+                      value: context.read<AgesDisplayCubit>()..displayAges(),
+                    ),
+                    BlocProvider.value(
+                      value: context.read<AgeSelectionCubit>(),
+                    ),
+                  ],
+                  child: const Ages(),
+                ));
+          },
+          child: Container(
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onPrimary,
+              borderRadius: BorderRadius.circular(30),
             ),
-            Icon(Icons.keyboard_arrow_down)
-          ],
-        ),
-      ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BasicTextTitle(
+                  text: state,
+                  fontSize: AppSizes.fontSizeSm,
+                  fontWeight: FontWeight.w400,
+                ),
+                const Icon(Icons.keyboard_arrow_down)
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

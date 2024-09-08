@@ -5,19 +5,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signUp(UserModel userModel);
+
+  Future<Either> getAges();
 }
 
 class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> signUp(UserModel userModel) async {
     try {
-      var returnData = await FirebaseAuth.instance
+      var returnedData = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: userModel.emailAddress!, password: userModel.password!);
 
       await FirebaseFirestore.instance
           .collection('User')
-          .doc(returnData.user!.uid)
+          .doc(returnedData.user!.uid)
           .set({
         'firstName': userModel.firtName,
         'lastName': userModel.lastName,
@@ -38,6 +40,18 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
 
       return Left(message);
     }
+  }
+
+  @override
+  Future<Either> getAges() async{
+      try{
+        var returnedData  =  await FirebaseFirestore.instance.collection('ages').get();
+        return Right(
+          returnedData.docs
+        );
+      }catch(e){
+        return const Left('Vui lòng thử lại.');
+      }
   }
 
 }

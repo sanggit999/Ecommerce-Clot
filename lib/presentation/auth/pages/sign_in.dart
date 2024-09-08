@@ -7,9 +7,8 @@ import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.d
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/presentation/auth/pages/enter_password.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/gender_and_age_selection.dart';
-import 'package:ecommerce_clot/presentation/auth/pages/sign_up.dart';
+import 'package:ecommerce_clot/presentation/auth/pages/password_reset_email.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -72,6 +71,7 @@ class _SignInPageState extends State<SignInPage> {
       onPressed: () {
         if (formKey.currentState!.validate()) {
           AppNavigator.push(context, const GenderAndAgeSelectionPage());
+          // AppNavigator.push(context, const PasswordResetEmailPage());
         } else {}
       },
       title: AppStrings.appContinue,

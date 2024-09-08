@@ -4,11 +4,14 @@ import 'package:ecommerce_clot/data/auth/source/auth_firebase_service.dart';
 import 'package:ecommerce_clot/domain/auth/repository/auth_repository.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 
- class AuthRepositoryImpl extends AuthRepository{
+class AuthRepositoryImpl extends AuthRepository {
   @override
-  Future<Either> signUp(UserModel userModel) {
-
-    return serviceLocator<AuthFirebaseService>().signUp(userModel);
+  Future<Either> signUp(UserModel userModel) async {
+    return await serviceLocator<AuthFirebaseService>().signUp(userModel);
   }
-  
+
+  @override
+  Future<Either> getAges() async {
+    return await serviceLocator<AuthFirebaseService>().getAges();
+  }
 }
