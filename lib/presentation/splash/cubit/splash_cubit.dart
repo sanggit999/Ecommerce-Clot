@@ -1,4 +1,4 @@
-import 'package:ecommerce_clot/presentation/splash/bloc/splash_state.dart';
+import 'package:ecommerce_clot/presentation/splash/cubit/splash_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashCubit extends Cubit<SplashState> {

@@ -1,32 +1,43 @@
+import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
+import 'package:ecommerce_clot/common/bloc/button/button_state.dart';
 import 'package:ecommerce_clot/common/helper/bottomsheet/app_bottomsheet.dart';
+import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
-import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
+import 'package:ecommerce_clot/common/widgets/buttons/basic_reactive_button.dart';
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_cubit.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/age_selection_cubit.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/gender_selection_cubit.dart';
+import 'package:ecommerce_clot/data/auth/models/user_signup_req.dart';
+import 'package:ecommerce_clot/domain/auth/usecase/signup.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/gender_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/pages/sign_in.dart';
 import 'package:ecommerce_clot/presentation/auth/widgets/ages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GenderAndAgeSelectionPage extends StatelessWidget {
-  const GenderAndAgeSelectionPage({super.key});
+  final UserSignupReq userSignupReq;
+
+  const GenderAndAgeSelectionPage({
+    super.key,
+    required this.userSignupReq,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: const BasicAppbar(),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (_) => GenderSelectionCubit()),
-          BlocProvider(create: (_) => AgesDisplayCubit()),
-          BlocProvider(create: (_) => AgeSelectionCubit()),
-        ],
+      body: BlocListener<ButtonCubit, ButtonState>(
+        listener: (context, state) {
+          if (state is ButtonSuccess) {
+            AppNavigator.pushAndRemoveUntil(context, SignInPage());
+          }
+        },
         child: Column(
           children: [
             Padding(
@@ -126,18 +137,19 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             AppBottomsheet.display(
-                context,
-                MultiBlocProvider(
-                  providers: [
-                    BlocProvider.value(
-                      value: context.read<AgesDisplayCubit>()..displayAges(),
-                    ),
-                    BlocProvider.value(
-                      value: context.read<AgeSelectionCubit>(),
-                    ),
-                  ],
-                  child: const Ages(),
-                ));
+              context,
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: context.read<AgesDisplayCubit>()..displayAges(),
+                  ),
+                  BlocProvider.value(
+                    value: context.read<AgeSelectionCubit>(),
+                  ),
+                ],
+                child: const Ages(),
+              ),
+            );
           },
           child: Container(
             height: 50,
@@ -169,8 +181,18 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(horizontal: 27),
       child: Center(
-        child: BasicAppButton(
-          onPressed: () {},
+        child: BasicReactiveButton(
+          onPressed: () {
+            userSignupReq.gender =
+                context.read<GenderSelectionCubit>().selectIndex;
+            print('USER->${userSignupReq.gender}');
+            userSignupReq.age = context.read<AgeSelectionCubit>().selectedAge;
+            print('USER->${userSignupReq.age}');
+            context.read<ButtonCubit>().execute(
+                  useCase: SignUpUseCase(),
+                  params: userSignupReq,
+                );
+          },
           title: AppStrings.finish,
         ),
       ),

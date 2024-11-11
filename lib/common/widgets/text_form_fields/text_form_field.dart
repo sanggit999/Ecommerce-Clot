@@ -22,9 +22,8 @@ class BasicTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(hintText: hintText),
       keyboardType: keyboardKey,
-      obscureText:obscureText,
+      obscureText: obscureText,
       validator: validator,
-      // TU DONG LAM MOI VALIDATE KHI NHAP
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }

@@ -14,16 +14,18 @@ class AppStrings {
   static const String doYouHaveAnAccount = 'Đã có tài khoản ? ';
   static const String createOne = 'Tạo tài khoản';
   static const String reset = 'Đặt lại';
-  static const String passwordResetEmailSent = 'Chúng tôi đã gửi cho bạn một email để đặt lại mật khẩu của bạn.';
-  static const String tellUsAboutYourself ='Hãy cho chúng tôi biết về bản thân bạn ?';
-  static const String whoDoYouShopFor ='Bạn mua sắm cho ai ?';
+  static const String passwordResetEmailSent =
+      'Chúng tôi đã gửi cho bạn một email để đặt lại mật khẩu của bạn.';
+  static const String tellUsAboutYourself =
+      'Hãy cho chúng tôi biết về bản thân bạn ?';
+  static const String whoDoYouShopFor = 'Bạn mua sắm cho ai ?';
   static const String howOldAreYou = 'Bạn bao nhiêu tuổi ?';
   static const String men = 'Nam';
   static const String women = 'Nữ';
   static const String ageRange = 'Độ tuổi';
-  static const String appContinue ='Tiếp tục';
+  static const String appContinue = 'Tiếp tục';
   static const String returnToLogin = 'Quay lại đăng nhập';
-  static const String finish ='Kết thúc';
+  static const String finish = 'Kết thúc';
   static const String search = 'Tìm kiếm';
   static const String categories = 'Danh mục';
   static const String topSelling = 'Bán chạy nhất';
@@ -48,6 +50,21 @@ class AppStrings {
   static const String returned = 'Đã hoàn trả';
   static const String canceled = 'Đã hủy';
 
+  static const String emailEmpty = 'Email không được bỏ trống';
+  static const String emailInvalid = 'Email không hợp lệ';
+  static const String emailExists = 'Emai đã tồn tại';
+  static const String emailNotExists = 'Email không tồn tại';
 
+  static const String passwordEmpty = 'Mật khẩu không được bỏ trống';
+  static const String passwordTooShort = 'Mật khẩu phải có ít nhất 8 ký tự';
+  static const String passwordWeak =
+      'Mật khẩu chứa 1 chữ hoa, số, ký tự đặc biệt';
+  static const String passwordIncorrect = 'Sai mật khẩu';
+  static const String firstNameEmpty = 'Tên không được bỏ trống';
+  static const String firstNameTooLong = 'Tên không được dài quá 20 ký tự';
+  static const String firstNameInvalid = 'Tên chỉ được chứa ký tự chữ cái';
 
+  static const String lastNameEmpty = 'Họ không được bỏ trống';
+  static const String lastNameTooLong = 'Họ không được dài quá 20 ký tự';
+  static const String lastNameInvalid = 'Họ chỉ được chứa ký tự chữ cái';
 }

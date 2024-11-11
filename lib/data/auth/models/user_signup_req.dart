@@ -1,4 +1,4 @@
-class UserModel {
+class UserSignupReq {
   String? firtName;
   String? lastName;
   String? emailAddress;
@@ -6,12 +6,12 @@ class UserModel {
   int? gender;
   String? age;
 
-  UserModel({
+  UserSignupReq({
     required this.firtName,
     required this.lastName,
     required this.emailAddress,
     required this.password,
-    required this.gender,
-    required this.age,
   });
+
+
 }

@@ -1,8 +1,11 @@
+import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_theme.dart';
 import 'package:ecommerce_clot/firebase_options.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_cubit.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/gender_selection_cubit.dart';
-import 'package:ecommerce_clot/presentation/splash/bloc/splash_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/gender_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
+import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/pages/splash.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +31,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => SplashCubit()..appStarted()),
+        BlocProvider(create: (_) => GenderSelectionCubit()),
+        BlocProvider(create: (_) => AgesDisplayCubit()),
+        BlocProvider(create: (_) => AgeSelectionCubit()),
+        BlocProvider(create: (_) => ButtonCubit()),
+        BlocProvider(create: (_) => ValidateCubit()),
       ],
       child: MaterialApp(
         title: 'Ecommerce Clot',

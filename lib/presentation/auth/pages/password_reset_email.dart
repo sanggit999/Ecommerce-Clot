@@ -1,6 +1,5 @@
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
-import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
@@ -33,15 +32,18 @@ class PasswordResetEmailPage extends StatelessWidget {
   }
 
   Widget _iconEmailSending() {
-    return Center(child: SvgPicture.asset(AppVectors.emailSending));
+    return Center(
+      child: SvgPicture.asset(AppVectors.emailSending),
+    );
   }
 
   Widget _textEmailSending() {
     return const Center(
-        child: BasicTextTitle(
-      text: AppStrings.passwordResetEmailSent,
-      textAlign: TextAlign.center,
-    ));
+      child: BasicTextTitle(
+        text: AppStrings.passwordResetEmailSent,
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 
   Widget _returnToLoginButton(BuildContext context) {
@@ -49,8 +51,7 @@ class PasswordResetEmailPage extends StatelessWidget {
       child: BasicAppButton(
         width: 200,
         onPressed: () {
-          //AppNavigator.push(context, const GenderAndAgeSelectionPage());
-          AppNavigator.pushReplacement(context, const SignInPage());
+          AppNavigator.pushAndRemoveUntil(context, SignInPage());
         },
         title: AppStrings.returnToLogin,
       ),

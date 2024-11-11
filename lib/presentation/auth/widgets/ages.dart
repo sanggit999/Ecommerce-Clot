@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/age_selection_cubit.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_cubit.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_state.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

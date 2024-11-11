@@ -1,8 +1,8 @@
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/sign_in.dart';
-import 'package:ecommerce_clot/presentation/splash/bloc/splash_cubit.dart';
-import 'package:ecommerce_clot/presentation/splash/bloc/splash_state.dart';
+import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
+import 'package:ecommerce_clot/presentation/splash/cubit/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +17,7 @@ class SplashPage extends StatelessWidget {
         if (state is UnAuthenticated) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const SignInPage()),
+            MaterialPageRoute(builder: (context) => SignInPage()),
           );
         }
       },

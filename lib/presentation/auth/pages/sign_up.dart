@@ -7,55 +7,61 @@ import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.d
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
+import 'package:ecommerce_clot/data/auth/models/user_signup_req.dart';
+import 'package:ecommerce_clot/domain/auth/repository/auth_repository.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/validate_state.dart';
+import 'package:ecommerce_clot/presentation/auth/pages/gender_and_age_selection.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/sign_in.dart';
+import 'package:ecommerce_clot/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatelessWidget {
+  SignUpPage({super.key});
 
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
+  final _formKey = GlobalKey<FormState>();
 
-class _SignUpPageState extends State<SignUpPage> {
-  final formKey = GlobalKey<FormState>();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final emailAddressController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+
+  final _lastNameController = TextEditingController();
+
+  final _emailAddressController = TextEditingController();
+
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: BasicSpacingStyle.padingAppbarHeight,
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _signInText(context),
-                const SizedBox(height: AppSizes.defaultSpace),
-                _firtNameField(context),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _lastNameField(context),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _emailAddressField(context),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _passwordField(context),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _continueButton(context),
-                const SizedBox(height: AppSizes.spaceBtwItem),
-                _createOne(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        appBar: const BasicAppbar(),
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            padding: BasicSpacingStyle.padingAppbarHeight,
+            child: Form(
+              key: _formKey,
+              child: BlocBuilder<ValidateCubit, ValidateState>(
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _signInText(context),
+                      const SizedBox(height: AppSizes.defaultSpace),
+                      _firtNameField(context),
+                      const SizedBox(height: AppSizes.spaceBtwItem),
+                      _lastNameField(context),
+                      const SizedBox(height: AppSizes.spaceBtwItem),
+                      _emailAddressField(context),
+                      const SizedBox(height: AppSizes.spaceBtwItem),
+                      _passwordField(context),
+                      const SizedBox(height: AppSizes.spaceBtwItem),
+                      _continueButton(context),
+                      const SizedBox(height: AppSizes.spaceBtwItem),
+                      _createOne(context),
+                    ],
+                  );
+                },
+              ),
+            )));
   }
 
   Widget _signInText(BuildContext context) {
@@ -65,14 +71,11 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _firtNameField(BuildContext context) {
     return BasicTextFormField(
       hintText: AppStrings.firstName,
-      controller: firstNameController,
+      controller: _firstNameController,
       keyboardKey: TextInputType.text,
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Khong duoc bo trong';
-        } else {
-          return null;
-        }
+        context.read<ValidateCubit>().validateFirstName(value);
+        return context.read<ValidateCubit>().state.messageFirstName;
       },
     );
   }
@@ -80,14 +83,11 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _lastNameField(BuildContext context) {
     return BasicTextFormField(
       hintText: AppStrings.lastName,
-      controller: lastNameController,
+      controller: _lastNameController,
       keyboardKey: TextInputType.text,
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Khong duoc bo trong';
-        } else {
-          return null;
-        }
+        context.read<ValidateCubit>().validateLastName(value);
+        return context.read<ValidateCubit>().state.messageLastName;
       },
     );
   }
@@ -95,14 +95,11 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailAddressField(BuildContext context) {
     return BasicTextFormField(
       hintText: AppStrings.emailAddress,
-      controller: emailAddressController,
+      controller: _emailAddressController,
       keyboardKey: TextInputType.emailAddress,
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Khong duoc bo trong';
-        } else {
-          return null;
-        }
+        context.read<ValidateCubit>().validateEmail(value!);
+        return context.read<ValidateCubit>().state.messageEmail;
       },
     );
   }
@@ -110,34 +107,54 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _passwordField(BuildContext context) {
     return BasicTextFormField(
       hintText: AppStrings.password,
-      controller: passwordController,
+      controller: _passwordController,
       keyboardKey: TextInputType.text,
       obscureText: true,
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Khong duoc bo trong';
-        } else {
-          return null;
-        }
+        context.read<ValidateCubit>().validatePassword(value);
+        return context.read<ValidateCubit>().state.messagePassword;
       },
     );
   }
 
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
-      onPressed: () {
-        if (formKey.currentState!.validate()) {
-         // AppNavigator.push(context, const EnterPasswordPage());
-        } else {}
+      onPressed: () async {
+        if (_formKey.currentState!.validate()) {
+          final emailExist = await serviceLocator<AuthRepository>()
+              .isEmailExists(_emailAddressController.text);
+          if (context.mounted) {
+            if (emailExist) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(AppStrings.emailExists),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            } else {
+              AppNavigator.push(
+                context,
+                GenderAndAgeSelectionPage(
+                  userSignupReq: UserSignupReq(
+                    firtName: _firstNameController.text.trim(),
+                    lastName: _lastNameController.text.trim(),
+                    emailAddress: _emailAddressController.text.trim(),
+                    password: _passwordController.text.trim(),
+                  ),
+                ),
+              );
+            }
+          }
+        }
       },
       title: AppStrings.appContinue,
     );
   }
 
-  Widget _createOne() {
+  Widget _createOne(BuildContext context) {
     return AppRichText(
       onPressed: () {
-        AppNavigator.pushReplacement(context, const SignInPage());
+        AppNavigator.pushReplacement(context, SignInPage());
       },
       text: AppStrings.doYouHaveAnAccount,
       text1: AppStrings.signIn,

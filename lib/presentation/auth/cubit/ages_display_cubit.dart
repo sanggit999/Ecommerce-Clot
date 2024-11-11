@@ -1,5 +1,5 @@
-import 'package:ecommerce_clot/domain/auth/usecase/get_ages_usecase.dart';
-import 'package:ecommerce_clot/presentation/auth/bloc/ages_display_state.dart';
+import 'package:ecommerce_clot/domain/auth/usecase/get_ages.dart';
+import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_state.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

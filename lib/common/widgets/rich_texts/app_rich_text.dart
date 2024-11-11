@@ -16,22 +16,24 @@ class AppRichText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      text: TextSpan(children: [
-        TextSpan(
-            text: text,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: AppSizes.fontSizeXs,
-            )),
-        TextSpan(
-            text: text1,
-            recognizer: TapGestureRecognizer()..onTap = onPressed,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: AppSizes.fontSizeXs,
-              fontWeight: FontWeight.bold,
-            ))
-      ]),
+      text: TextSpan(
+        children: [
+          TextSpan(
+              text: text,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: AppSizes.fontSizeXs,
+              )),
+          TextSpan(
+              text: text1,
+              recognizer: TapGestureRecognizer()..onTap = onPressed,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: AppSizes.fontSizeXs,
+                fontWeight: FontWeight.bold,
+              ))
+        ],
+      ),
     );
   }
 }
