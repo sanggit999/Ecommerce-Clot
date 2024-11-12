@@ -1,5 +1,5 @@
-import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
-import 'package:ecommerce_clot/common/bloc/button/button_state.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_state.dart';
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';

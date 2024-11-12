@@ -9,7 +9,6 @@ import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/data/auth/models/user_signin_req.dart';
 import 'package:ecommerce_clot/domain/auth/repository/auth_repository.dart';
-import 'package:ecommerce_clot/domain/auth/usecase/signin.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_state.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/enter_password.dart';

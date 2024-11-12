@@ -1,5 +1,5 @@
-import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
-import 'package:ecommerce_clot/common/bloc/button/button_state.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_state.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:flutter/material.dart';

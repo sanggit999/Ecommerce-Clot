@@ -47,9 +47,7 @@ class ValidateCubit extends Cubit<ValidateState> {
     }
   }
 
-  void validatePassword(
-    String? password,
-  ) async {
+  void validatePassword(String? password) {
     if (password!.isEmpty) {
       emit(state.copyWith(messagePassword: AppStrings.passwordEmpty));
     } else if (password.length < 3) {

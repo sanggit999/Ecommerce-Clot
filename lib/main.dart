@@ -1,4 +1,4 @@
-import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_theme.dart';
 import 'package:ecommerce_clot/firebase_options.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';

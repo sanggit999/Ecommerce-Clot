@@ -28,7 +28,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       return const Right('Đăng nhập thành công');
     } on FirebaseAuthException catch (e) {
       String message = '';
-      
+
       if (e.code == 'invalid-email') {
         message = 'Tài khoản không tồn tại';
       } else if (e.code == 'invalid-credential') {
@@ -88,13 +88,8 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
     final snapshot = await FirebaseFirestore.instance
         .collection('User')
         .where('emailAddress', isEqualTo: email)
+        .limit(1)
         .get();
-
-    // if (snapshot.docs.isEmpty) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
 
     return snapshot.docs.isNotEmpty;
   }

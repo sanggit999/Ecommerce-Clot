@@ -1,5 +1,5 @@
-import 'package:ecommerce_clot/common/bloc/button/button_cubit.dart';
-import 'package:ecommerce_clot/common/bloc/button/button_state.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
+import 'package:ecommerce_clot/common/cubit/button/button_state.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_reactive_button.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/signin.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_state.dart';
@@ -34,26 +34,35 @@ class EnterPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BasicAppbar(),
-      body: BlocBuilder<ValidateCubit, ValidateState>(
-        builder: (context, state) {
-          return BlocListener<ButtonCubit, ButtonState>(
-            listener: (context, state) {
-              if (state is ButtonSuccess) {
-                AppNavigator.pushAndRemoveUntil(context, const Home());
-                //
-                Fluttertoast.showToast(
-                  msg: 'Dang nhap thanh cong',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                );
-              }
-            },
-            child: Padding(
-              padding: BasicSpacingStyle.padingAppbarHeight,
-              child: Form(
-                key: _formKey,
+      body: Padding(
+        padding: BasicSpacingStyle.padingAppbarHeight,
+        child: Form(
+          key: _formKey,
+          child: BlocBuilder<ValidateCubit,ValidateState>(
+            builder: (context,state) {
+              return BlocListener<ButtonCubit,ButtonState>(
+                listener: (context, state) {
+                  if(state is ButtonFailure){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                       SnackBar(
+                        content: Text(state.errorMessage),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  }
+
+                  if (state is ButtonSuccess) {
+                    AppNavigator.pushAndRemoveUntil(context, const Home());
+                    //
+                    Fluttertoast.showToast(
+                      msg: 'Dang nhap thanh cong',
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.black54,
+                      textColor: Colors.white,
+                    );
+                  }
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -66,10 +75,10 @@ class EnterPasswordPage extends StatelessWidget {
                     _resetPassword(context),
                   ],
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            }
+          ),
+        ),
       ),
     );
   }
@@ -84,13 +93,10 @@ class EnterPasswordPage extends StatelessWidget {
       controller: _passwordController,
       keyboardKey: TextInputType.text,
       obscureText: true,
-      // validator: (value) {
-      //   context
-      //       .read<ValidateCubit>()
-      //       .validatePassword(value!, userSigninReq.emailAddress, true);
-
-      //   return context.watch<ValidateCubit>().state.messagePassword;
-      // },
+      validator: (value) {
+        context.read<ValidateCubit>().validatePassword(value);
+        return context.read<ValidateCubit>().state.messagePassword;
+      },
     );
   }
 
@@ -98,10 +104,10 @@ class EnterPasswordPage extends StatelessWidget {
     return BasicReactiveButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          userSigninReq.password = _passwordController.text.trim();
+          userSigninReq.password = _passwordController.text;
           context
               .read<ButtonCubit>()
-              .execute(useCase: SignInUseCase(), params: userSigninReq);
+              .execute(useCase: SignInUseCase(),params: userSigninReq);
         }
       },
       title: AppStrings.appContinue,
