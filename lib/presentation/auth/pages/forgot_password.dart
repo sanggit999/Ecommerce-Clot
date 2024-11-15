@@ -8,10 +8,12 @@ import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.d
 import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
+import 'package:ecommerce_clot/domain/auth/repository/auth_repository.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/send_password_reset_email.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_state.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/password_reset_email.dart';
+import 'package:ecommerce_clot/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,33 +28,32 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BasicAppbar(),
-      body: BlocBuilder<ValidateCubit, ValidateState>(
-        builder: (context, state) {
-          return BlocListener<ButtonCubit, ButtonState>(
-            listener: (context, state) {
-              if (state is ButtonSuccess) {
-                AppNavigator.push(context, const PasswordResetEmailPage());
-              }
-            },
-            child: Padding(
-              padding: BasicSpacingStyle.padingAppbarHeight,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _signInText(context),
-                    const SizedBox(height: AppSizes.defaultSpace),
-                    _emailAddressField(context),
-                    const SizedBox(height: AppSizes.spaceBtwItem),
-                    _continueButton(context),
-                    const SizedBox(height: AppSizes.spaceBtwItem),
-                  ],
-                ),
+      body: Padding(
+        padding: BasicSpacingStyle.padingAppbarHeight,
+        child: Form(
+          key: _formKey,
+          child: BlocBuilder<ValidateCubit, ValidateState>(
+              builder: (context, state) {
+            return BlocListener<ButtonCubit, ButtonState>(
+              listener: (context, state) {
+                if (state is ButtonSuccess) {
+                  AppNavigator.push(context, const PasswordResetEmailPage());
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _signInText(context),
+                  const SizedBox(height: AppSizes.defaultSpace),
+                  _emailAddressField(context),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  _continueButton(context),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                ],
               ),
-            ),
-          );
-        },
+            );
+          }),
+        ),
       ),
     );
   }
@@ -66,21 +67,35 @@ class ForgotPasswordPage extends StatelessWidget {
       hintText: AppStrings.enterEmailAddress,
       controller: _emailAddressController,
       keyboardKey: TextInputType.emailAddress,
-      // validator: (emailAddress) {
-      //   context.read<ValidateCubit>().validateEmail(emailAddress!, true);
-      //   return context.read<ValidateCubit>().state.messageEmail;
-      // },
+      validator: (value) {
+        context.read<ValidateCubit>().validateEmail(value);
+        return context.read<ValidateCubit>().state.messageEmail;
+      },
     );
   }
 
   Widget _continueButton(BuildContext context) {
     return BasicReactiveButton(
-      onPressed: () {
-        if (_formKey.currentState!.validate()) {}
-        context.read<ButtonCubit>().execute(
-              useCase: SendPasswordResetEmailUseCase(),
-              params: _emailAddressController.text.trim(),
-            );
+      onPressed: () async {
+        if (_formKey.currentState!.validate()) {
+          final emailExist = await serviceLocator<AuthRepository>()
+              .isEmailExists(_emailAddressController.text);
+          if (context.mounted) {
+            if (!emailExist) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(AppStrings.emailNotExists),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            } else {
+              context.read<ButtonCubit>().execute(
+                    useCase: SendPasswordResetEmailUseCase(),
+                    params: _emailAddressController.text,
+                  );
+            }
+          }
+        }
       },
       title: AppStrings.appContinue,
     );

@@ -1,6 +1,7 @@
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/sign_in.dart';
+import 'package:ecommerce_clot/presentation/home/pages/home.dart';
 import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/cubit/splash_state.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,12 @@ class SplashPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => SignInPage()),
+          );
+        }
+        if (state is Authenticated) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
           );
         }
       },

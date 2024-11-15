@@ -31,4 +31,9 @@ class AuthRepositoryImpl implements AuthRepository {
     return await serviceLocator<AuthFirebaseService>()
         .sendPasswordResetEmail(email);
   }
+
+  @override
+  Future<bool> isLoggedIn() async{
+        return await serviceLocator<AuthFirebaseService>().isLoggedIn();
+  }
 }

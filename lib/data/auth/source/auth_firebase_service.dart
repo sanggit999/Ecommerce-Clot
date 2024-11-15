@@ -14,6 +14,8 @@ abstract class AuthFirebaseService {
   Future<Either> getAges();
 
   Future<bool> isEmailExists(String email);
+
+  Future<bool> isLoggedIn();
 }
 
 class AuthFirebaseServiceImpl implements AuthFirebaseService {
@@ -101,6 +103,15 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       return const Right('Đổi thành công');
     } catch (e) {
       return const Left('Lỗi, thử lại');
+    }
+  }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

@@ -3,7 +3,7 @@ import 'package:ecommerce_clot/common/cubit/button/button_state.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_reactive_button.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/signin.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_state.dart';
-import 'package:ecommerce_clot/presentation/auth/pages/home.dart';
+import 'package:ecommerce_clot/presentation/home/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
@@ -23,6 +23,7 @@ class EnterPasswordPage extends StatelessWidget {
   final UserSigninReq userSigninReq;
 
   final _formKey = GlobalKey<FormState>();
+
   final _passwordController = TextEditingController();
 
   EnterPasswordPage({
@@ -38,46 +39,36 @@ class EnterPasswordPage extends StatelessWidget {
         padding: BasicSpacingStyle.padingAppbarHeight,
         child: Form(
           key: _formKey,
-          child: BlocBuilder<ValidateCubit,ValidateState>(
-            builder: (context,state) {
-              return BlocListener<ButtonCubit,ButtonState>(
-                listener: (context, state) {
-                  if(state is ButtonFailure){
-                    ScaffoldMessenger.of(context).showSnackBar(
-                       SnackBar(
-                        content: Text(state.errorMessage),
-                        behavior: SnackBarBehavior.floating,
-                      ),
-                    );
-                  }
-
-                  if (state is ButtonSuccess) {
-                    AppNavigator.pushAndRemoveUntil(context, const Home());
-                    //
-                    Fluttertoast.showToast(
-                      msg: 'Dang nhap thanh cong',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      backgroundColor: Colors.black54,
-                      textColor: Colors.white,
-                    );
-                  }
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _signInText(context),
-                    const SizedBox(height: AppSizes.defaultSpace),
-                    _passwordField(context),
-                    const SizedBox(height: AppSizes.spaceBtwItem),
-                    _continueButton(context),
-                    const SizedBox(height: AppSizes.spaceBtwItem),
-                    _resetPassword(context),
-                  ],
-                ),
-              );
-            }
-          ),
+          child: BlocBuilder<ValidateCubit, ValidateState>(
+              builder: (context, state) {
+            return BlocListener<ButtonCubit, ButtonState>(
+              listener: (context, state) {
+                if (state is ButtonFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.errorMessage),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                }
+                if (state is ButtonSuccess) {
+                  AppNavigator.pushAndRemoveUntil(context, const HomePage());
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _signInText(context),
+                  const SizedBox(height: AppSizes.defaultSpace),
+                  _passwordField(context),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  _continueButton(context),
+                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  _resetPassword(context),
+                ],
+              ),
+            );
+          }),
         ),
       ),
     );
@@ -107,7 +98,7 @@ class EnterPasswordPage extends StatelessWidget {
           userSigninReq.password = _passwordController.text;
           context
               .read<ButtonCubit>()
-              .execute(useCase: SignInUseCase(),params: userSigninReq);
+              .execute(useCase: SignInUseCase(), params: userSigninReq);
         }
       },
       title: AppStrings.appContinue,
