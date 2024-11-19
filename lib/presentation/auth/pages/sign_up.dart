@@ -46,7 +46,7 @@ class SignUpPage extends StatelessWidget {
                     children: [
                       _signInText(context),
                       const SizedBox(height: AppSizes.defaultSpace),
-                      _firtNameField(context),
+                      _firstNameField(context),
                       const SizedBox(height: AppSizes.spaceBtwItem),
                       _lastNameField(context),
                       const SizedBox(height: AppSizes.spaceBtwItem),
@@ -68,7 +68,7 @@ class SignUpPage extends StatelessWidget {
     return const BasicTextTitle(text: AppStrings.createAccount);
   }
 
-  Widget _firtNameField(BuildContext context) {
+  Widget _firstNameField(BuildContext context) {
     return BasicTextFormField(
       hintText: AppStrings.firstName,
       controller: _firstNameController,

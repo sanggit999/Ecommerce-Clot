@@ -5,6 +5,7 @@ import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart'
 import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/gender_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
+import 'package:ecommerce_clot/presentation/home/cubit/user_display_info_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/pages/splash.dart';
 import 'package:ecommerce_clot/service_locator.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => AgeSelectionCubit()),
         BlocProvider(create: (_) => ButtonCubit()),
         BlocProvider(create: (_) => ValidateCubit()),
+        BlocProvider(create: (_) => UserDisplayInfoCubit()..displayUserInfo()),
       ],
       child: MaterialApp(
         title: 'Ecommerce Clot',

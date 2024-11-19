@@ -1,3 +1,5 @@
+import 'package:ecommerce_clot/presentation/home/widgets/header.dart';
+import 'package:ecommerce_clot/presentation/home/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,9 +8,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('DANG NHAP OK'),
+        body: SingleChildScrollView(
+      child: Column(
+        children: [
+          Header(),
+          SizedBox(height: 24),
+          SearchField(),
+        ],
       ),
-    );
+    ));
   }
 }

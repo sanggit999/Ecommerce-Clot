@@ -14,4 +14,7 @@ abstract class AuthRepository {
   Future<bool> isEmailExists(String email);
 
   Future<bool> isLoggedIn();
+
+  Future<Either> getUser();
+
 }

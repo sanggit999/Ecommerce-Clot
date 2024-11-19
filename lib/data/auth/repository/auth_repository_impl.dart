@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce_clot/data/auth/models/user.dart';
 import 'package:ecommerce_clot/data/auth/models/user_signin_req.dart';
 import 'package:ecommerce_clot/data/auth/models/user_signup_req.dart';
 import 'package:ecommerce_clot/data/auth/source/auth_firebase_service.dart';
@@ -33,7 +34,21 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> isLoggedIn() async{
-        return await serviceLocator<AuthFirebaseService>().isLoggedIn();
+  Future<bool> isLoggedIn() async {
+    return await serviceLocator<AuthFirebaseService>().isLoggedIn();
+  }
+
+  @override
+  Future<Either> getUser() async {
+    var userData = await serviceLocator<AuthFirebaseService>().getUser();
+
+    return userData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(UserModel.fromMap(data).toEntity());
+      },
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:ecommerce_clot/data/auth/repository/auth_repository_impl.dart';
 import 'package:ecommerce_clot/data/auth/source/auth_firebase_service.dart';
 import 'package:ecommerce_clot/domain/auth/repository/auth_repository.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/get_ages.dart';
+import 'package:ecommerce_clot/domain/auth/usecase/get_user.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/is_logged_in.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/signin.dart';
 import 'package:ecommerce_clot/domain/auth/usecase/signup.dart';
@@ -22,6 +23,10 @@ Future<void> initializeDependencies() async {
   serviceLocator.registerSingleton<SignUpUseCase>(SignUpUseCase());
 
   serviceLocator.registerSingleton<SignInUseCase>(SignInUseCase());
+
   serviceLocator.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
+
   serviceLocator.registerSingleton<GetAgesUseCase>(GetAgesUseCase());
+
+  serviceLocator.registerSingleton<GetUserUseCase>(GetUserUseCase());
 }
