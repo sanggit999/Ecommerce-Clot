@@ -17,7 +17,7 @@ import 'package:ecommerce_clot/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -43,13 +43,7 @@ class SignInPage extends StatelessWidget {
           lastPressed = now;
 
           // HIEN THI THONG BAO CLICK LAN 1
-          Fluttertoast.showToast(
-            msg: 'Click BACK 1 lần nữa để thoát',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.black54,
-            textColor: Colors.white,
-          );
+
 
           return; // CHUA THOAT UNG DUNG
         }

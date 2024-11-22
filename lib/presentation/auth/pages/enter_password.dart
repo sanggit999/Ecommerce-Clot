@@ -17,7 +17,7 @@ import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/data/auth/models/user_signin_req.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/pages/forgot_password.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class EnterPasswordPage extends StatelessWidget {
   final UserSigninReq userSigninReq;

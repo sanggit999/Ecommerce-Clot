@@ -1,3 +1,4 @@
+import 'package:ecommerce_clot/presentation/home/widgets/categories.dart';
 import 'package:ecommerce_clot/presentation/home/widgets/header.dart';
 import 'package:ecommerce_clot/presentation/home/widgets/search_field.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class HomePage extends StatelessWidget {
           Header(),
           SizedBox(height: 24),
           SearchField(),
+          SizedBox(height: 24),
+          Categories(),
+          SizedBox(height: 24),
         ],
       ),
     ));

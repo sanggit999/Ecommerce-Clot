@@ -42,7 +42,7 @@ dependencies:
   cloud_firestore: ^5.3.0
   dartz: ^0.10.1
   get_it: ^7.7.0
-  fluttertoast: ^8.2.8
+
   equatable: ^2.0.5
   copy_with_extension: ^5.0.4
   copy_with_extension_gen: ^5.0.4
