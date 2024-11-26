@@ -1,7 +1,9 @@
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_cubit.dart';
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_state.dart';
+import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/presentation/see_all_categories/pages/see_all_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +21,7 @@ class Categories extends StatelessWidget {
       if (state is CategoriesDisplayLoaded) {
         return Column(
           children: [
-            _categoriesTitle(),
+            _categoriesTitle(context),
             const SizedBox(height: 12),
             _categories(context, state.categoryEntity)
           ],
@@ -30,24 +32,29 @@ class Categories extends StatelessWidget {
     });
   }
 
-  Widget _categoriesTitle() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+  Widget _categoriesTitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             AppStrings.categories,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
           ),
-          Text(
-            AppStrings.seeAll,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
+          GestureDetector(
+            onTap: () {
+              AppNavigator.push(context, const SeeAllCategoriesPages());
+            },
+            child: const Text(
+              AppStrings.seeAll,
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+              ),
             ),
           )
         ],
