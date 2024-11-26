@@ -56,9 +56,9 @@ class Categories extends StatelessWidget {
   }
 
   Widget _categories(
-      BuildContext context, List<CategoryEntity> listCategoryEntity) {
+      BuildContext context, List<CategoryEntity> categoryEntity) {
     return SizedBox(
-      height: 100,
+      height: 90,
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -73,14 +73,14 @@ class Categories extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Theme.of(context).colorScheme.onPrimary,
                       image: DecorationImage(
-                        image: NetworkImage(listCategoryEntity[index].image),
+                        image: NetworkImage(categoryEntity[index].image),
                         filterQuality: FilterQuality.high,
                         fit: BoxFit.fill,
                       )),
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  listCategoryEntity[index].title,
+                  categoryEntity[index].title,
                   style: const TextStyle(
                       fontWeight: FontWeight.w400, fontSize: 12),
                 )
@@ -88,7 +88,7 @@ class Categories extends StatelessWidget {
             );
           },
           separatorBuilder: (context, index) => const SizedBox(width: 15),
-          itemCount: listCategoryEntity.length),
+          itemCount: categoryEntity.length),
     );
   }
 }

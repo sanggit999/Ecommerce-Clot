@@ -1,11 +1,14 @@
 import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_cubit.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_theme.dart';
+import 'package:ecommerce_clot/domain/products/usecase/get_new_in.dart';
+import 'package:ecommerce_clot/domain/products/usecase/get_top_selling.dart';
 import 'package:ecommerce_clot/firebase_options.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/gender_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
+import 'package:ecommerce_clot/common/cubit/product/product_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/home/cubit/user_display_info_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/pages/splash.dart';
@@ -39,7 +42,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => ButtonCubit()),
         BlocProvider(create: (_) => ValidateCubit()),
         BlocProvider(create: (_) => UserDisplayInfoCubit()..displayUserInfo()),
-        BlocProvider(create: (_) => CategoriesDisplayCubit()..displayCategories()),
+        BlocProvider(
+          create: (_) => CategoriesDisplayCubit()..displayCategories(),
+        ),
       ],
       child: MaterialApp(
         title: 'Ecommerce Clot',

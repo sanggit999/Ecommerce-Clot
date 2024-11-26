@@ -29,7 +29,7 @@ class AppStrings {
   static const String search = 'Tìm kiếm';
   static const String categories = 'Danh mục';
   static const String topSelling = 'Bán chạy nhất';
-  static const String newArrivals = 'Sản phẩm mới';
+  static const String newIn = 'Sản phẩm mới';
   static const String seeAll = 'Xem tất cả';
   static const String shopByCategories = 'Mua sắm theo danh mục';
   static const String hoodies = 'Áo hoodie';
