@@ -6,8 +6,9 @@ import 'package:ecommerce_clot/service_locator.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   @override
-  Future<Either> getTopSelling() async {
-    var result = await serviceLocator<ProductFirebaseService>().getTopSelling();
+  Future<Either> getProductTopSelling() async {
+    var result =
+        await serviceLocator<ProductFirebaseService>().getProductTopSelling();
     return result.fold(
       (error) {
         return Left(error);
@@ -21,13 +22,30 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either> getNewIn()  async {
-    var result = await serviceLocator<ProductFirebaseService>().getNewIn();
+  Future<Either> getProductNewIn() async {
+    var result =
+        await serviceLocator<ProductFirebaseService>().getProductNewIn();
     return result.fold(
-          (error) {
+      (error) {
         return Left(error);
       },
-          (data) {
+      (data) {
+        return Right(List.from(data)
+            .map((e) => ProductModel.fromMap(e).toEntity())
+            .toList());
+      },
+    );
+  }
+
+  @override
+  Future<Either> getProductByCategoryId(String categoryId) async {
+    var result = await serviceLocator<ProductFirebaseService>()
+        .getProductByCategoryId(categoryId);
+    return result.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
         return Right(List.from(data)
             .map((e) => ProductModel.fromMap(e).toEntity())
             .toList());

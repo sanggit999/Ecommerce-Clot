@@ -1,8 +1,10 @@
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_cubit.dart';
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_state.dart';
+import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/presentation/category_products/pages/category_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +45,6 @@ class SeeAllCategoriesPages extends StatelessWidget {
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-
         ),
       ),
     );
@@ -56,36 +57,45 @@ class SeeAllCategoriesPages extends StatelessWidget {
       shrinkWrap: true,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemBuilder: (context, index) {
-        return Container(
-          height: 65,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onPrimary,
-              borderRadius: BorderRadius.circular(8)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    image: DecorationImage(
-                      image: NetworkImage(categoryEntity[index].image),
-                      filterQuality: FilterQuality.high,
-                      fit: BoxFit.fill,
-                    )),
-              ),
-              const SizedBox(width: 15),
-              Text(
-                categoryEntity[index].title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
+        return GestureDetector(
+          onTap: () {
+            AppNavigator.push(
+                context,
+                CategoryProductsPage(
+                  categoryEntity: categoryEntity[index],
+                ));
+          },
+          child: Container(
+            height: 65,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary,
+                borderRadius: BorderRadius.circular(8)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      image: DecorationImage(
+                        image: NetworkImage(categoryEntity[index].image),
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.fill,
+                      )),
                 ),
-              )
-            ],
+                const SizedBox(width: 15),
+                Text(
+                  categoryEntity[index].title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },
