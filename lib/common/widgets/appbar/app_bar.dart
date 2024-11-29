@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? title;
+  final Widget? actions;
+  final bool hideBack;
+  final Color? backgroundColor;
+  final double? height;
   const BasicAppbar({
     super.key,
     this.title,
     this.actions,
     this.hideBack = false,
+    this.backgroundColor,
+    this.height,
   });
-
-  final Widget? title;
-  final Widget? actions;
-  final bool hideBack;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,11 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
       title: title ?? const Text(' '),
       automaticallyImplyLeading: false,
       actions: [actions ?? Container()],
+      toolbarHeight: height ?? 80,
+      backgroundColor: backgroundColor ?? Colors.transparent,
+      elevation: 0,
+      centerTitle: true,
+      titleSpacing: 0,
       leading: hideBack
           ? null
           : IconButton(
@@ -44,5 +52,5 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize =>  Size.fromHeight(height ?? 80);
 }

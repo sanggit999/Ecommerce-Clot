@@ -1,7 +1,7 @@
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/buttons/basic_app_button.dart';
-import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
+import 'package:ecommerce_clot/common/widgets/title_text/text_title.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';

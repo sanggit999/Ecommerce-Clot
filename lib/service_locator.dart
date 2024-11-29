@@ -13,6 +13,7 @@ import 'package:ecommerce_clot/domain/auth/usecase/signup.dart';
 import 'package:ecommerce_clot/domain/categories/repository/category_repository.dart';
 import 'package:ecommerce_clot/domain/categories/usecase/get_categories.dart';
 import 'package:ecommerce_clot/domain/products/repository/product_repository.dart';
+import 'package:ecommerce_clot/domain/products/usecase/get_product_by_title.dart';
 import 'package:ecommerce_clot/domain/products/usecase/get_product_new_in.dart';
 import 'package:ecommerce_clot/domain/products/usecase/get_product_by_category_id.dart';
 import 'package:ecommerce_clot/domain/products/usecase/get_prodcut_top_selling.dart';
@@ -55,4 +56,5 @@ Future<void> initializeDependencies() async {
   serviceLocator.registerSingleton<GetProductTopSellingUseCase>(GetProductTopSellingUseCase());
   serviceLocator.registerSingleton<GetProductNewInUseCase>(GetProductNewInUseCase());
   serviceLocator.registerSingleton<GetProductByCategoryIdUseCase>(GetProductByCategoryIdUseCase());
+  serviceLocator.registerSingleton<GetProductByTitleUseCase>(GetProductByTitleUseCase());
 }

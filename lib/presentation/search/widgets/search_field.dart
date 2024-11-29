@@ -1,8 +1,8 @@
-import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
+import 'package:ecommerce_clot/common/cubit/product/product_display_cubit.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/presentation/search/pages/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchField extends StatelessWidget {
@@ -13,10 +13,14 @@ class SearchField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
-        readOnly: true,
-        onTap: () {
-          AppNavigator.push(context, const SearchPage());
+        onChanged: (value) {
+          if (value.isEmpty) {
+            context.read<ProductDisplayCubit>().displayProductInitial();
+          } else {
+            context.read<ProductDisplayCubit>().displayProduct(params: value);
+          }
         },
+        keyboardType: TextInputType.text,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(12),
           focusedBorder: OutlineInputBorder(

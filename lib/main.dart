@@ -1,24 +1,23 @@
 import 'package:ecommerce_clot/common/cubit/button/button_cubit.dart';
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_cubit.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_theme.dart';
-import 'package:ecommerce_clot/domain/products/usecase/get_product_new_in.dart';
-import 'package:ecommerce_clot/domain/products/usecase/get_prodcut_top_selling.dart';
 import 'package:ecommerce_clot/firebase_options.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/gender_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/validate_cubit.dart';
-import 'package:ecommerce_clot/common/cubit/product/product_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/home/cubit/user_display_info_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/cubit/splash_cubit.dart';
 import 'package:ecommerce_clot/presentation/splash/pages/splash.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

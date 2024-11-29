@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
+import 'package:ecommerce_clot/common/widgets/title_text/text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/age_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/auth/cubit/ages_display_cubit.dart';

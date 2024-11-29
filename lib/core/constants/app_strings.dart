@@ -49,6 +49,7 @@ class AppStrings {
   static const String delivered = 'Đã giao';
   static const String returned = 'Đã hoàn trả';
   static const String canceled = 'Đã hủy';
+  static const String noSearchResult = 'Rất tiếc, chúng tôi không tìm thấy kết quả phù hợp với tìm kiếm của bạn.';
 
   static const String emailEmpty = 'Email không được bỏ trống';
   static const String emailInvalid = 'Email không hợp lệ';

@@ -2,6 +2,8 @@ import 'package:ecommerce_clot/domain/products/entity/product.dart';
 
 abstract class ProductDisplayState {}
 
+class ProductInitial extends ProductDisplayState{}
+
 class ProductLoading extends ProductDisplayState {}
 
 class ProductLoaded extends ProductDisplayState {

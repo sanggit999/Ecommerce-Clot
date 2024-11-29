@@ -11,7 +11,7 @@ import 'package:ecommerce_clot/common/styles/basic_spacing_style.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/rich_texts/app_rich_text.dart';
 import 'package:ecommerce_clot/common/widgets/text_form_fields/text_form_field.dart';
-import 'package:ecommerce_clot/common/widgets/title_text/basic_text_title.dart';
+import 'package:ecommerce_clot/common/widgets/title_text/text_title.dart';
 import 'package:ecommerce_clot/core/constants/app_sizes.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/data/auth/models/user_signin_req.dart';
