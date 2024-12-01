@@ -3,24 +3,24 @@ import 'dart:convert';
 import 'package:ecommerce_clot/domain/products/entity/product_color.dart';
 
 class ProductColorModel {
-  final String hexCode;
+  final List<int> rgb;
   final String title;
 
   ProductColorModel({
-    required this.hexCode,
+    required this.rgb,
     required this.title,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'hexCode': hexCode,
+      'hexCode': rgb,
       'title': title,
     };
   }
 
   factory ProductColorModel.fromMap(Map<String, dynamic> map) {
     return ProductColorModel(
-      hexCode: map['hexCode'] as String,
+      rgb: List<int>.from(map['rgb'].map((e) => e)),
       title: map['title'] as String,
     );
   }
@@ -34,7 +34,7 @@ class ProductColorModel {
 extension ProductColorXModel on ProductColorModel {
   ProductColorEntity toEntity() {
     return ProductColorEntity(
-      hexCode: hexCode,
+      rgb: rgb,
       title: title,
     );
   }

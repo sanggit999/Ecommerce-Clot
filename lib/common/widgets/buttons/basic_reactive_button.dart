@@ -12,45 +12,76 @@ class BasicReactiveButton extends StatelessWidget {
     this.title = '',
     this.height,
     this.width,
+    this.widget,
   });
 
   final VoidCallback onPressed;
   final double? width;
   final double? height;
   final String title;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ButtonCubit, ButtonState>(
       builder: (context, state) {
-        return _initial(context, state is ButtonLoading ? true : false);
+        if (state is ButtonLoading) {
+          _loading(true);
+        } 
+        return _initial();
       },
     );
   }
 
-  Widget _initial(BuildContext context, bool isLoading) {
+  Widget _loading(bool isLoading) {
     return ElevatedButton(
-      onPressed: isLoading ? () {} : onPressed,
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(height ?? 50),
-        backgroundColor: isLoading ? AppColors.primary : AppColors.primary,
-      ),
-      child: isLoading
-          ? Container(
-              height: height ?? 50,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(
-                color: AppColors.white,
-              ),
-            )
-          : Text(
+        onPressed: null,
+        style: ElevatedButton.styleFrom(
+            minimumSize: Size.fromHeight(height ?? 50),
+            backgroundColor: isLoading ? AppColors.primary : AppColors.primary),
+        child: Container(
+            height: height ?? 50,
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator()));
+  }
+
+  Widget _initial() {
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(height ?? 50),
+        ),
+        child: widget ??
+            Text(
               title,
               style: const TextStyle(
-                color: AppColors.white,
-                fontSize: AppSizes.fontSizeSm,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-    );
+                  color: Colors.white, fontWeight: FontWeight.w400),
+            ));
   }
+
+// Widget _initial(BuildContext context, bool isLoading) {
+//   return ElevatedButton(
+//     onPressed: isLoading ? () {} : onPressed,
+//     style: ElevatedButton.styleFrom(
+//       minimumSize: Size.fromHeight(height ?? 50),
+//       backgroundColor: isLoading ? AppColors.primary : AppColors.primary,
+//     ),
+//     child: isLoading
+//         ? Container(
+//             height: height ?? 50,
+//             alignment: Alignment.center,
+//             child: const CircularProgressIndicator(
+//               color: AppColors.white,
+//             ),
+//           )
+//         : Text(
+//             title,
+//             style: const TextStyle(
+//               color: AppColors.white,
+//               fontSize: AppSizes.fontSizeSm,
+//               fontWeight: FontWeight.w400,
+//             ),
+//           ),
+//   );
+// }
 }
