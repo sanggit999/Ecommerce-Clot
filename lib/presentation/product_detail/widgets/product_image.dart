@@ -12,7 +12,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 220,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

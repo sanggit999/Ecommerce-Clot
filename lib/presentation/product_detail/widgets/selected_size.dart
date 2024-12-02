@@ -1,8 +1,10 @@
 import 'package:ecommerce_clot/common/helper/bottomsheet/app_bottomsheet.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/presentation/product_detail/cubit/product_size_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/product_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectedSize extends StatelessWidget {
   final ProductEntity productEntity;
@@ -12,8 +14,12 @@ class SelectedSize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        AppBottomsheet.display(context,ProductSizes(productEntity: productEntity));
+      onTap: () {
+        AppBottomsheet.display(
+            context,
+            BlocProvider.value(
+                value: BlocProvider.of<ProductSizeSelectionCubit>(context),
+                child: ProductSizes(productEntity: productEntity)));
       },
       child: Container(
         height: 55,
@@ -33,10 +39,14 @@ class SelectedSize extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  productEntity.sizes[0],
-                  style:
-                      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                BlocBuilder<ProductSizeSelectionCubit,int>(
+                  builder: (context,state) {
+                    return Text(
+                      productEntity.sizes[state],
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    );
+                  }
                 ),
                 const SizedBox(width: 10),
                 const Icon(

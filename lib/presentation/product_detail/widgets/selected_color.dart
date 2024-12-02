@@ -1,8 +1,10 @@
 import 'package:ecommerce_clot/common/helper/bottomsheet/app_bottomsheet.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/presentation/product_detail/cubit/product_color_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/product_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectedColor extends StatelessWidget {
   final ProductEntity productEntity;
@@ -12,8 +14,14 @@ class SelectedColor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:(){
-        AppBottomsheet.display(context,  ProductColors(productEntity: productEntity,));
+      onTap: () {
+        AppBottomsheet.display(
+            context,
+            BlocProvider.value(
+                value: BlocProvider.of<ProductColorSelectionCubit>(context),
+                child: ProductColors(
+                  productEntity: productEntity,
+                )));
       },
       child: Container(
         height: 55,
@@ -33,17 +41,21 @@ class SelectedColor extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 16,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(
-                        productEntity.colors[0].rgb[0],
-                        productEntity.colors[0].rgb[1],
-                        productEntity.colors[0].rgb[2],
-                        1),
-                    shape: BoxShape.circle,
-                  ),
+                BlocBuilder<ProductColorSelectionCubit,int>(
+                  builder: (context,state) {
+                    return Container(
+                      width: 16,
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(
+                            productEntity.colors[state].rgb[0],
+                            productEntity.colors[state].rgb[1],
+                            productEntity.colors[state].rgb[2],
+                            1),
+                        shape: BoxShape.circle,
+                      ),
+                    );
+                  }
                 ),
                 const SizedBox(width: 10),
                 const Icon(

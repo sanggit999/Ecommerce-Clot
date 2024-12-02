@@ -1,6 +1,8 @@
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/presentation/product_detail/cubit/product_color_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/product_detail/cubit/product_quantity_cubit.dart';
+import 'package:ecommerce_clot/presentation/product_detail/cubit/product_size_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/add_to_bag.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/selected_color.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/product_image.dart';
@@ -20,6 +22,8 @@ class ProductDetail extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_)=>ProductQuantityCubit()),
+        BlocProvider(create: (_)=> ProductColorSelectionCubit()),
+        BlocProvider(create: (_)=> ProductSizeSelectionCubit()),
       ],
       child: Scaffold(
         appBar: const BasicAppbar(),
