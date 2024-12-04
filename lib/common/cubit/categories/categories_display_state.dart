@@ -1,4 +1,4 @@
-import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/domain/category/entity/category.dart';
 
 abstract class CategoriesDisplayState {}
 

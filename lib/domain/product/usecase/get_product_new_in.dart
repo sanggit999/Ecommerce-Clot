@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_clot/core/usecase/usecase.dart';
-import 'package:ecommerce_clot/domain/products/repository/product_repository.dart';
+import 'package:ecommerce_clot/domain/product/repository/product_repository.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 
 class GetProductNewInUseCase implements UseCase<Either, dynamic> {

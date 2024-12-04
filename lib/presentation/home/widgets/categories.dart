@@ -2,7 +2,7 @@ import 'package:ecommerce_clot/common/cubit/categories/categories_display_cubit.
 import 'package:ecommerce_clot/common/cubit/categories/categories_display_state.dart';
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/domain/category/entity/category.dart';
 import 'package:ecommerce_clot/presentation/see_all_categories/pages/see_all_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

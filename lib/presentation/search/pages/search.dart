@@ -4,8 +4,9 @@ import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/common/widgets/product/product_card.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/domain/products/entity/product.dart';
-import 'package:ecommerce_clot/domain/products/usecase/get_product_by_title.dart';
+import 'package:ecommerce_clot/domain/product/entity/product.dart';
+import 'package:ecommerce_clot/domain/product/usecase/get_product_by_title.dart';
+
 import 'package:ecommerce_clot/presentation/search/widgets/search_field.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 import 'package:flutter/material.dart';

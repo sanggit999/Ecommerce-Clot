@@ -25,63 +25,35 @@ class BasicReactiveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ButtonCubit, ButtonState>(
       builder: (context, state) {
-        if (state is ButtonLoading) {
-          _loading(true);
-        } 
-        return _initial();
+        return _isLoading(state is ButtonLoading ? true : false);
       },
     );
   }
 
-  Widget _loading(bool isLoading) {
+  Widget _isLoading(bool isLoading) {
     return ElevatedButton(
-        onPressed: null,
-        style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(height ?? 50),
-            backgroundColor: isLoading ? AppColors.primary : AppColors.primary),
-        child: Container(
-            height: height ?? 50,
-            alignment: Alignment.center,
-            child: const CircularProgressIndicator()));
+      onPressed: isLoading ? () {} : onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size.fromHeight(height ?? 50),
+        backgroundColor: isLoading ? AppColors.primary : AppColors.primary,
+      ),
+      child: isLoading
+          ? Container(
+              height: height ?? 50,
+              alignment: Alignment.center,
+              child: const CircularProgressIndicator(
+                color: AppColors.white,
+              ),
+            )
+          : widget ??
+              Text(
+                title,
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontSize: AppSizes.fontSizeSm,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+    );
   }
-
-  Widget _initial() {
-    return ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size.fromHeight(height ?? 50),
-        ),
-        child: widget ??
-            Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w400),
-            ));
-  }
-
-// Widget _initial(BuildContext context, bool isLoading) {
-//   return ElevatedButton(
-//     onPressed: isLoading ? () {} : onPressed,
-//     style: ElevatedButton.styleFrom(
-//       minimumSize: Size.fromHeight(height ?? 50),
-//       backgroundColor: isLoading ? AppColors.primary : AppColors.primary,
-//     ),
-//     child: isLoading
-//         ? Container(
-//             height: height ?? 50,
-//             alignment: Alignment.center,
-//             child: const CircularProgressIndicator(
-//               color: AppColors.white,
-//             ),
-//           )
-//         : Text(
-//             title,
-//             style: const TextStyle(
-//               color: AppColors.white,
-//               fontSize: AppSizes.fontSizeSm,
-//               fontWeight: FontWeight.w400,
-//             ),
-//           ),
-//   );
-// }
 }

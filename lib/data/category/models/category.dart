@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/domain/category/entity/category.dart';
+
+
 
 class CategoryModel {
   final String categoryId;

@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:ecommerce_clot/domain/products/entity/product_color.dart';
+import 'package:ecommerce_clot/domain/product/entity/product_color.dart';
 
 class ProductColorModel {
   final List<int> rgb;

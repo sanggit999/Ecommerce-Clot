@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_clot/data/products/models/product.dart';
-import 'package:ecommerce_clot/data/products/source/product_firebase_service.dart';
-import 'package:ecommerce_clot/domain/products/repository/product_repository.dart';
+import 'package:ecommerce_clot/data/product/models/product.dart';
+import 'package:ecommerce_clot/data/product/source/product_firebase_service.dart';
+import 'package:ecommerce_clot/domain/product/repository/product_repository.dart';
 import 'package:ecommerce_clot/service_locator.dart';
 
 class ProductRepositoryImpl implements ProductRepository {

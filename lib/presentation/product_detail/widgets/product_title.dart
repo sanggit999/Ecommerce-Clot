@@ -1,4 +1,4 @@
-import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/domain/product/entity/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductTitle extends StatelessWidget {

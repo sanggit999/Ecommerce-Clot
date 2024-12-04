@@ -3,7 +3,7 @@ import 'package:ecommerce_clot/common/cubit/categories/categories_display_state.
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/domain/categories/entity/category.dart';
+import 'package:ecommerce_clot/domain/category/entity/category.dart';
 import 'package:ecommerce_clot/presentation/category_products/pages/category_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,6 +1,6 @@
 import 'package:ecommerce_clot/common/helper/bottomsheet/app_bottomsheet.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
-import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/domain/product/entity/product.dart';
 import 'package:ecommerce_clot/presentation/product_detail/cubit/product_color_selection_cubit.dart';
 import 'package:ecommerce_clot/presentation/product_detail/widgets/product_colors.dart';
 import 'package:flutter/material.dart';

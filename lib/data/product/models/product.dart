@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_clot/data/products/models/product_color.dart';
-import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/data/product/models/product_color.dart';
+import 'package:ecommerce_clot/domain/product/entity/product.dart';
 
 class ProductModel {
   final String categoryId;

@@ -1,4 +1,5 @@
-import 'package:ecommerce_clot/domain/products/entity/product.dart';
+import 'package:ecommerce_clot/domain/product/entity/product.dart';
+
 
 class ProductPriceHelper {
  static double providerCurrentPrice(ProductEntity productEntity) {

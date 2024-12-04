@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_clot/data/categories/models/category.dart';
-import 'package:ecommerce_clot/data/categories/source/category_firebase_service.dart';
-import 'package:ecommerce_clot/domain/categories/repository/category_repository.dart';
+import 'package:ecommerce_clot/data/category/models/category.dart';
+import 'package:ecommerce_clot/data/category/source/category_firebase_service.dart';
+import 'package:ecommerce_clot/domain/category/repository/category_repository.dart';
+
 import 'package:ecommerce_clot/service_locator.dart';
 
 class CategoryRepositoryImpl implements CategoryRepository {
