@@ -50,11 +50,14 @@ class AppStrings {
   static const String returned = 'Đã hoàn trả';
   static const String canceled = 'Đã hủy';
   static const String noSearchResult = 'Rất tiếc, chúng tôi không tìm thấy kết quả phù hợp với tìm kiếm của bạn.';
+  static const String noCardResult = 'Giỏ hàng của bạn trống';
   static const String size = 'Kích cỡ';
   static const String color = 'Màu';
   static const String quantity = 'Số luợng';
   static const String addToBag = 'Thêm vào giỏ hàng';
   static const String total = 'Tổng:';
+  static const String cart = 'Giỏ hàng';
+
   static const String emailEmpty = 'Email không được bỏ trống';
   static const String emailInvalid = 'Email không hợp lệ';
   static const String emailExists = 'Emai đã tồn tại';

@@ -78,7 +78,7 @@ class ProductSizes extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: state == index
                                       ? AppColors.white
-                                      : AppColors.black),
+                                      : Theme.of(context).colorScheme.onSurface),
                             ),
                             state == index
                                 ? const Icon(

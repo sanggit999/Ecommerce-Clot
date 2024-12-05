@@ -1,8 +1,10 @@
+import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_images.dart';
 import 'package:ecommerce_clot/core/configs/assets/app_vectors.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/auth/entity/user.dart';
+import 'package:ecommerce_clot/presentation/cart/pages/cart.dart';
 import 'package:ecommerce_clot/presentation/home/cubit/user_display_info_cubit.dart';
 import 'package:ecommerce_clot/presentation/home/cubit/user_display_info_state.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +27,9 @@ class Header extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _profileImage(state.userEntity),
+              _profileImage(context,state.userEntity),
               _gender(context,state.userEntity),
-              _cart(),
+              _cart(context),
             ],
           );
         }
@@ -37,7 +39,7 @@ class Header extends StatelessWidget {
     );
   }
 
-  Widget _profileImage(UserEntity userEntity) {
+  Widget _profileImage(BuildContext context,UserEntity userEntity) {
     return GestureDetector(
       onTap: () {
         //print('ok ok');
@@ -51,7 +53,7 @@ class Header extends StatelessWidget {
                 ? const AssetImage(AppImages.profile)
                 : NetworkImage(userEntity.image),
           ),
-          color: Colors.red,
+          color:Theme.of(context).colorScheme.onPrimary,
           shape: BoxShape.circle,
         ),
       ),
@@ -78,9 +80,11 @@ class Header extends StatelessWidget {
     );
   }
 
-  Widget _cart() {
+  Widget _cart(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        AppNavigator.push(context, const CartPage());
+      },
       child: Container(
         width: 40,
         height: 40,

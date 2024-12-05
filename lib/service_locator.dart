@@ -16,6 +16,7 @@ import 'package:ecommerce_clot/domain/category/repository/category_repository.da
 import 'package:ecommerce_clot/domain/category/usecase/get_categories.dart';
 import 'package:ecommerce_clot/domain/order/repository/order_repository.dart';
 import 'package:ecommerce_clot/domain/order/usecase/add_to_bag.dart';
+import 'package:ecommerce_clot/domain/order/usecase/get_cart_product.dart';
 import 'package:ecommerce_clot/domain/product/repository/product_repository.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_prodcut_top_selling.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_product_by_category_id.dart';
@@ -28,22 +29,24 @@ final serviceLocator = GetIt.instance;
 Future<void> initializeDependencies() async {
   // SERVICES;
   // KHOI TAO NGAY LAP TUC TON TAI SUOT DOI KHI CHAY UNG DUNG
+  // AUTH
   serviceLocator
       .registerSingleton<AuthFirebaseService>(AuthFirebaseServiceImpl());
 
+  // CATEGORY
   serviceLocator.registerSingleton<CategoryFirebaseService>(
       CategoryFirebaseServiceImpl());
 
+  // PRODUCT
   serviceLocator
       .registerSingleton<ProductFirebaseService>(ProductFirebaseServiceImpl());
 
-
+  // ORDER
   serviceLocator
       .registerSingleton<OrderFirebaseService>(OrderFirebaseServiceImpl());
 
 
   // REPOSITORIES
-
   // AUTH
   serviceLocator.registerSingleton<AuthRepository>(AuthRepositoryImpl());
 
@@ -58,7 +61,6 @@ Future<void> initializeDependencies() async {
   serviceLocator.registerSingleton<OrderRepository>(OrderRepositoryImpl());
 
   // USECASE
-
   // AUTH
   serviceLocator.registerSingleton<SignUpUseCase>(SignUpUseCase());
 
@@ -85,7 +87,10 @@ Future<void> initializeDependencies() async {
   serviceLocator
       .registerSingleton<GetProductByTitleUseCase>(GetProductByTitleUseCase());
 
-
+  // ORDER
   serviceLocator
       .registerSingleton<AddToBagUseCase>(AddToBagUseCase());
+
+  serviceLocator
+      .registerSingleton<GetCartProductUseCase>(GetCartProductUseCase());
 }

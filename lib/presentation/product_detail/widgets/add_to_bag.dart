@@ -22,12 +22,19 @@ class AddToBag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ButtonCubit,ButtonState>(
+    return BlocListener<ButtonCubit, ButtonState>(
       listener: (context, state) {
-        if(state is ButtonSuccess){
+        if (state is ButtonSuccess) {
           AppNavigator.push(context, const CartPage());
         }
 
+        if (state is ButtonFailure) {
+          var snackbar = SnackBar(
+            content: Text(state.errorMessage),
+            behavior: SnackBarBehavior.floating,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -40,10 +47,17 @@ class AddToBag extends StatelessWidget {
                   productImage: productEntity.images[0],
                   productTitle: productEntity.title,
                   productPrice: productEntity.price.toDouble(),
-                  productSize: productEntity.sizes[context.read<ProductSizeSelectionCubit>().selectedIndex],
-                  productColors: productEntity.colors[context.read<ProductColorSelectionCubit>().selectedIndex].title,
+                  productSize: productEntity.sizes[
+                      context.read<ProductSizeSelectionCubit>().selectedIndex],
+                  productColors: productEntity
+                      .colors[context
+                          .read<ProductColorSelectionCubit>()
+                          .selectedIndex]
+                      .title,
                   productQuantity: context.read<ProductQuantityCubit>().state,
-                  totalProductPrice: ProductPriceHelper.providerCurrentPrice(productEntity) * context.read<ProductQuantityCubit>().state,
+                  totalProductPrice:
+                      ProductPriceHelper.providerCurrentPrice(productEntity) *
+                          context.read<ProductQuantityCubit>().state,
                   createdDate: DateTime.now().toString(),
                 ));
           },

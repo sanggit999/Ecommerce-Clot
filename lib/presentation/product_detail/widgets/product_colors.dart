@@ -79,7 +79,7 @@ class ProductColors extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: state == index
                                       ? AppColors.white
-                                      : AppColors.black),
+                                      : Theme.of(context).colorScheme.onSurface),
                             ),
                             Row(
                               children: [
