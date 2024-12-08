@@ -4,6 +4,7 @@ import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/order/entity/product_ordered.dart';
 import 'package:ecommerce_clot/presentation/cart/cubit/cart_product_display_cubit.dart';
 import 'package:ecommerce_clot/presentation/cart/cubit/cart_product_display_state.dart';
+import 'package:ecommerce_clot/presentation/cart/widgets/checkout.dart';
 import 'package:ecommerce_clot/presentation/cart/widgets/product_ordered_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +38,15 @@ class CartPage extends StatelessWidget {
                 ? Center(
                     child: _noCartResult(),
                   )
-                : _product(state.productOrderedEntity);
+                : Stack(
+                    children: [
+                      _product(state.productOrderedEntity),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Checkout(listProductOrderedEntity: state.productOrderedEntity),
+                      )
+                    ],
+                  );
           }
 
           return const SizedBox();
@@ -67,18 +76,14 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _product(List<ProductOrderedEntity> productOrderedEntity) {
-    return Expanded(
-      child: ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemBuilder: (context, index) {
-            return ProductOrderedCard(
-              productOrderedEntity: productOrderedEntity[index],
-            );
-          },
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
-          itemCount: productOrderedEntity.length),
-    );
+    return ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        itemBuilder: (context, index) {
+          return ProductOrderedCard(
+            productOrderedEntity: productOrderedEntity[index],
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: 10),
+        itemCount: productOrderedEntity.length);
   }
-
-
 }

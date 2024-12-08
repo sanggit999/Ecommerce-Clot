@@ -64,31 +64,28 @@ class AddToBag extends StatelessWidget {
           widget: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  const Text(
-                    AppStrings.total,
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(width: 5),
-                  BlocBuilder<ProductQuantityCubit, int>(
-                      builder: (context, state) {
-                    final price =
-                        ProductPriceHelper.providerCurrentPrice(productEntity) *
-                            state;
-                    return Text(
-                      '${price.toString()}\$',
+              BlocBuilder<ProductQuantityCubit, int>(builder: (context, state) {
+                final price =
+                    ProductPriceHelper.providerCurrentPrice(productEntity) *
+                        state;
+                return Text.rich(
+                  TextSpan(
+                      text: '${AppStrings.total}: ',
                       style: const TextStyle(
                           fontSize: 16,
                           color: AppColors.white,
-                          fontWeight: FontWeight.bold),
-                    );
-                  }),
-                ],
-              ),
+                          fontWeight: FontWeight.w500),
+                      children: [
+                        TextSpan(
+                          text: '${price.toString()}\$',
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                );
+              }),
               const Text(
                 AppStrings.addToBag,
                 style: TextStyle(

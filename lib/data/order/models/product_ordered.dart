@@ -12,6 +12,7 @@ class ProductOrderedModel {
   final int productQuantity;
   final double totalProductPrice;
   final String createdDate;
+  final String id;
 
   ProductOrderedModel(
       {required this.productId,
@@ -22,7 +23,8 @@ class ProductOrderedModel {
       required this.productColors,
       required this.productQuantity,
       required this.totalProductPrice,
-      required this.createdDate});
+      required this.createdDate,
+      required this.id});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -35,6 +37,7 @@ class ProductOrderedModel {
       'productQuantity': productQuantity,
       'totalProductPrice': totalProductPrice,
       'createdDate': createdDate,
+      'id': id,
     };
   }
 
@@ -49,6 +52,7 @@ class ProductOrderedModel {
       productQuantity: map['productQuantity'] as int,
       totalProductPrice: map['totalProductPrice'] as double,
       createdDate: map['createdDate'] as String,
+      id: map['id'] as String,
     );
   }
 
@@ -69,6 +73,23 @@ extension ProductOrderedXModel on ProductOrderedModel {
         productColors: productColors,
         productQuantity: productQuantity,
         totalProductPrice: totalProductPrice,
-        createdDate: createdDate);
+        createdDate: createdDate,
+        id: id);
+  }
+}
+
+extension ProductOrderedXEmtity on ProductOrderedEntity {
+  ProductOrderedModel fromEntity() {
+    return ProductOrderedModel(
+        productId: productId,
+        productImage: productImage,
+        productTitle: productTitle,
+        productPrice: productPrice,
+        productSize: productSize,
+        productColors: productColors,
+        productQuantity: productQuantity,
+        totalProductPrice: totalProductPrice,
+        createdDate: createdDate,
+        id: id);
   }
 }

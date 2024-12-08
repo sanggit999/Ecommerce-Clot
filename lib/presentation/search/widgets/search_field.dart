@@ -43,6 +43,7 @@ class SearchField extends StatelessWidget {
           hintStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: 12,
+            fontWeight: FontWeight.w400
           ),
         ),
       ),

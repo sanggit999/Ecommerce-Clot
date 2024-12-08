@@ -55,8 +55,13 @@ class AppStrings {
   static const String color = 'Màu';
   static const String quantity = 'Số luợng';
   static const String addToBag = 'Thêm vào giỏ hàng';
-  static const String total = 'Tổng:';
+  static const String total = 'Tổng';
   static const String cart = 'Giỏ hàng';
+  static const String subTotal = 'Tổng phụ';
+  static const String shippingCost = 'Chi phí vận chuyển';
+  static const String tax = 'Thuế';
+  static const String checkOut = 'Thanh toán';
+  static const String placeOrder = 'Đặt hàng';
 
   static const String emailEmpty = 'Email không được bỏ trống';
   static const String emailInvalid = 'Email không hợp lệ';

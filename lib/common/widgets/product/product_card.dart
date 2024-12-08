@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDrakMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
         AppNavigator.push(
@@ -27,7 +27,7 @@ class ProductCard extends StatelessWidget {
       child: Container(
         width: 160,
         decoration: BoxDecoration(
-          color: isDrakMode ? AppColors.darkLight : AppColors.whiteLight,
+          color: isDarkMode ? AppColors.darkLight : AppColors.whiteLight,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(

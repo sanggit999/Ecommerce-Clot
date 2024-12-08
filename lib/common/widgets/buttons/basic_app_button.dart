@@ -9,12 +9,14 @@ class BasicAppButton extends StatelessWidget {
     this.title = '',
     this.height,
     this.width,
+    this.widget
   });
 
   final VoidCallback onPressed;
   final double? width;
   final double? height;
   final String title;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class BasicAppButton extends StatelessWidget {
           height ?? 50,
         ),
       ),
-      child: Text(
+      child: widget ?? Text(
         title,
         style: const TextStyle(
           color: AppColors.white,

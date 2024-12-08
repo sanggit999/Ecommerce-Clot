@@ -3,6 +3,7 @@ import 'package:ecommerce_clot/common/cubit/categories/categories_display_state.
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/category/entity/category.dart';
+import 'package:ecommerce_clot/presentation/category_products/pages/category_products.dart';
 import 'package:ecommerce_clot/presentation/see_all_categories/pages/see_all_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,17 +74,22 @@ class Categories extends StatelessWidget {
           itemBuilder: (context, index) {
             return Column(
               children: [
-                Container(
-                  width: 56,
-                  height: 56,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      image: DecorationImage(
-                        image: NetworkImage(categoryEntity[index].image),
-                        filterQuality: FilterQuality.high,
-                        fit: BoxFit.fill,
-                      )),
+                GestureDetector(
+                  onTap: (){
+                    AppNavigator.push(context, CategoryProductsPage(categoryEntity: categoryEntity[index]));
+                  },
+                  child: Container(
+                    width: 56,
+                    height: 56,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        image: DecorationImage(
+                          image: NetworkImage(categoryEntity[index].image),
+                          filterQuality: FilterQuality.high,
+                          fit: BoxFit.fill,
+                        )),
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(

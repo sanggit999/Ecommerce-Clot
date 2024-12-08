@@ -1,7 +1,9 @@
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/core/constants/app_strings.dart';
 import 'package:ecommerce_clot/domain/order/entity/product_ordered.dart';
+import 'package:ecommerce_clot/presentation/cart/cubit/cart_product_display_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductOrderedCard extends StatelessWidget {
   final ProductOrderedEntity productOrderedEntity;
@@ -107,12 +109,11 @@ class ProductOrderedCard extends StatelessWidget {
                             TextSpan(
                                 text: productOrderedEntity.productColors,
                                 style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  overflow: TextOverflow.ellipsis
-                                ))
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    overflow: TextOverflow.ellipsis))
                           ]),
                     ),
                   ],
@@ -131,15 +132,22 @@ class ProductOrderedCard extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 12, fontWeight: FontWeight.bold),
                 ),
-                Container(
-                    width: 24,
-                    height: 24,
-                    decoration: const BoxDecoration(
-                        color: AppColors.primary, shape: BoxShape.circle),
-                    child: const Icon(
-                      Icons.remove,
-                      size: 12,
-                    )),
+                GestureDetector(
+                  onTap: () {
+                    context
+                        .read<CartProductDisplayCubit>()
+                        .removeCartProduct(productOrderedEntity);
+                  },
+                  child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: const BoxDecoration(
+                          color: AppColors.primary, shape: BoxShape.circle),
+                      child: const Icon(
+                        Icons.remove,
+                        size: 12,
+                      )),
+                ),
               ],
             ),
           )
