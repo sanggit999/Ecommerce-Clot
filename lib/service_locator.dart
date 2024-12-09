@@ -20,10 +20,13 @@ import 'package:ecommerce_clot/domain/order/usecase/get_cart_product.dart';
 import 'package:ecommerce_clot/domain/order/usecase/order_registration.dart';
 import 'package:ecommerce_clot/domain/order/usecase/remove_cart_product.dart';
 import 'package:ecommerce_clot/domain/product/repository/product_repository.dart';
+import 'package:ecommerce_clot/domain/product/usecase/add_or_remove_favorite_product.dart';
+import 'package:ecommerce_clot/domain/product/usecase/get_favorite_product.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_prodcut_top_selling.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_product_by_category_id.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_product_by_title.dart';
 import 'package:ecommerce_clot/domain/product/usecase/get_product_new_in.dart';
+import 'package:ecommerce_clot/domain/product/usecase/is_favorite.dart';
 import 'package:get_it/get_it.dart';
 
 final serviceLocator = GetIt.instance;
@@ -88,6 +91,14 @@ Future<void> initializeDependencies() async {
 
   serviceLocator
       .registerSingleton<GetProductByTitleUseCase>(GetProductByTitleUseCase());
+
+  serviceLocator.registerSingleton<AddOrRemoveFavoriteProductUseCase>(
+      AddOrRemoveFavoriteProductUseCase());
+
+  serviceLocator.registerSingleton<IsFavoriteUseCase>(IsFavoriteUseCase());
+
+  serviceLocator.registerSingleton<GetFavoriteProductUseCase>(
+      GetFavoriteProductUseCase());
 
   // ORDER
   serviceLocator
