@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_clot/data/product/models/product_color.dart';
 import 'package:ecommerce_clot/domain/product/entity/product.dart';
@@ -33,7 +34,7 @@ class ProductModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'categoryId': categoryId,
-      'colors': colors.map((x) => x.toMap()).toList(),
+      'colors': colors.map((e) => e.toMap()).toList(),
       'createdDate': createdDate,
       'discountedPrice': discountedPrice,
       'gender': gender,
@@ -69,6 +70,7 @@ class ProductModel {
       ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
+// Lấy data từ Model gắn sang Entity để xử lý logic UI
 extension ProductXModel on ProductModel {
   ProductEntity toEntity() {
     return ProductEntity(
@@ -87,11 +89,12 @@ extension ProductXModel on ProductModel {
   }
 }
 
+// Lấy data từ Entity gắn sang Model để làm việc với API
 extension ProductXEntity on ProductEntity {
   ProductModel fromEntity() {
     return ProductModel(
       categoryId: categoryId,
-      colors: colors.map((e)=>e.fromEntity()).toList(),
+      colors: colors.map((e) => e.fromEntity()).toList(),
       createdDate: createdDate,
       discountedPrice: discountedPrice,
       gender: gender,

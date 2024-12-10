@@ -30,7 +30,7 @@ class FavoriteIconButton extends StatelessWidget {
           return Icon(
             state ? Icons.favorite : Icons.favorite_outline,
             size: AppSizes.iconSizeSm,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: state ? Colors.red : Theme.of(context).colorScheme.onSurface,
           );
         }),
       ),

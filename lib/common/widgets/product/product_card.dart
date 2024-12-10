@@ -1,7 +1,6 @@
 import 'package:ecommerce_clot/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce_clot/core/configs/theme/app_colors.dart';
 import 'package:ecommerce_clot/domain/product/entity/product.dart';
-
 import 'package:ecommerce_clot/presentation/product_detail/pages/product_detail.dart';
 import 'package:flutter/material.dart';
 

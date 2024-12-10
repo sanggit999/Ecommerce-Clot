@@ -12,7 +12,7 @@ class ProductColorModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'hexCode': rgb,
+      'rgb': rgb,
       'title': title,
     };
   }

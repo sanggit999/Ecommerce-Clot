@@ -88,7 +88,7 @@ class ProductFirebaseServiceImpl implements ProductFirebaseService {
 
       if (result.docs.isNotEmpty) {
         await result.docs.first.reference.delete();
-        return const Right(false); // Có yêu thích thì xoá
+        return const Right(false); // Có thì xoá
       } else {
         await FirebaseFirestore.instance
             .collection('User')
