@@ -8,9 +8,9 @@ import 'package:ecommerce_clot/presentation/cart/pages/checkout.dart';
 import 'package:flutter/material.dart';
 
 class Checkout extends StatelessWidget {
-  final List<ProductOrderedEntity> listProductOrderedEntity;
+  final List<ProductOrderedEntity> products;
 
-  const Checkout({super.key, required this.listProductOrderedEntity});
+  const Checkout({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class Checkout extends StatelessWidget {
                 ),
               ),
               Text(
-                '${CartPriceHelper.caluclateCartSubtotal(listProductOrderedEntity)}\$',
+                '${CartPriceHelper.caluclateCartSubtotal(products)}\$',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 16,
@@ -95,7 +95,7 @@ class Checkout extends StatelessWidget {
                 ),
               ),
               Text(
-                '${CartPriceHelper.caluclateCartSubtotal(listProductOrderedEntity) + 10}\$',
+                '${CartPriceHelper.caluclateCartSubtotal(products) + 10}\$',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 16,
@@ -106,7 +106,7 @@ class Checkout extends StatelessWidget {
           ),
           BasicAppButton(
             onPressed: () {
-              AppNavigator.push(context, CheckoutPage(listProductOrderedEntity: listProductOrderedEntity,));
+              AppNavigator.push(context, CheckoutPage(products: products,));
             },
             title: AppStrings.checkOut,
           )

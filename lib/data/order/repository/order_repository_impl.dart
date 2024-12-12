@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_clot/data/order/models/add_to_bag_req.dart';
+import 'package:ecommerce_clot/data/order/models/order.dart';
 import 'package:ecommerce_clot/data/order/models/order_registration_req.dart';
 import 'package:ecommerce_clot/data/order/models/product_ordered.dart';
 import 'package:ecommerce_clot/data/order/source/order_firebase_service.dart';
@@ -51,6 +52,21 @@ class OrderRepositoryImpl implements OrderRepository {
       },
           (data) {
         return Right(data);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getOrder() async {
+    var result = await serviceLocator<OrderFirebaseService>().getOrder();
+    return result.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(List.from(data)
+            .map((e) => OrderModel.fromMap(e).toEntity())
+            .toList());
       },
     );
   }

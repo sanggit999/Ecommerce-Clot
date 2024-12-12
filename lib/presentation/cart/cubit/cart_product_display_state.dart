@@ -5,9 +5,9 @@ abstract class CartProductDisplayState {}
 class CartProductDisplayLoading extends CartProductDisplayState {}
 
 class CartProductDisplayLoaded extends CartProductDisplayState {
-  final List<ProductOrderedEntity> productOrderedEntity;
+  final List<ProductOrderedEntity> products;
 
-  CartProductDisplayLoaded({required this.productOrderedEntity});
+  CartProductDisplayLoaded({required this.products});
 }
 
 class CartProductDisplayFailure extends CartProductDisplayState {}

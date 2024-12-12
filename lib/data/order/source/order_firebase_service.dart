@@ -12,6 +12,8 @@ abstract class OrderFirebaseService {
   Future<Either> removeCartProduct(String id);
 
   Future<Either> orderRegistration(OrderRegistrationReq orderRegistrationReq);
+
+  Future<Either> getOrder();
 }
 
 class OrderFirebaseServiceImpl implements OrderFirebaseService {
@@ -82,7 +84,7 @@ class OrderFirebaseServiceImpl implements OrderFirebaseService {
           .collection('Orders')
           .add(orderRegistrationReq.toMap());
 
-      for (var i in orderRegistrationReq.listProductOrderedEntity) {
+      for (var i in orderRegistrationReq.products) {
         await FirebaseFirestore.instance
             .collection('User')
             .doc(currentUser.uid)
@@ -94,6 +96,22 @@ class OrderFirebaseServiceImpl implements OrderFirebaseService {
       return const Right('Đặt hàng thành công');
     } catch (e) {
       return const Left('Thất bại, thử lại');
+    }
+  }
+
+  @override
+  Future<Either> getOrder() async {
+    try {
+      var currentUser = FirebaseAuth.instance.currentUser;
+      var result = await FirebaseFirestore.instance
+          .collection('User')
+          .doc(currentUser!.uid)
+          .collection('Orders')
+          .get();
+
+      return Right(result.docs.map((e) => e.data()).toList());
+    } catch (e) {
+      return const Left('Thử lại sau');
     }
   }
 }

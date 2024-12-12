@@ -15,7 +15,7 @@ class CartProductDisplayCubit extends Cubit<CartProductDisplayState> {
         emit(CartProductDisplayFailure());
       },
       (data) {
-        emit(CartProductDisplayLoaded(productOrderedEntity: data));
+        emit(CartProductDisplayLoaded(products: data));
       },
     );
   }

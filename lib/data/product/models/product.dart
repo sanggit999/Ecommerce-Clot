@@ -75,7 +75,7 @@ extension ProductXModel on ProductModel {
   ProductEntity toEntity() {
     return ProductEntity(
       categoryId: categoryId,
-      colors: colors.map((e)=>e.toEntity()).toList(),
+      colors: colors.map((e) => e.toEntity()).toList(),
       createdDate: createdDate,
       discountedPrice: discountedPrice,
       gender: gender,

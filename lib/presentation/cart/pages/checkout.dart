@@ -15,9 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CheckoutPage extends StatelessWidget {
-  final List<ProductOrderedEntity> listProductOrderedEntity;
+  final List<ProductOrderedEntity> products;
 
-  CheckoutPage({super.key, required this.listProductOrderedEntity});
+  CheckoutPage({super.key, required this.products});
 
   final _addressController = TextEditingController();
 
@@ -48,12 +48,11 @@ class CheckoutPage extends StatelessWidget {
                   context.read<ButtonCubit>().execute(
                         useCase: serviceLocator<OrderRegistrationUseCase>(),
                         params: OrderRegistrationReq(
-                          listProductOrderedEntity: listProductOrderedEntity,
+                          products: products,
                           shippingAddress: _addressController.text,
-                          itemCount: listProductOrderedEntity.length,
-                          totalPrice: CartPriceHelper.caluclateCartSubtotal(
-                                  listProductOrderedEntity) +
-                              10,
+                          itemCount: products.length,
+                          totalPrice: CartPriceHelper.caluclateCartSubtotal(products) +
+                                  10,
                           createdDate: DateTime.now().toString(),
                         ),
                       );
@@ -70,7 +69,7 @@ class CheckoutPage extends StatelessWidget {
                         children: [
                           TextSpan(
                               text:
-                                  '${CartPriceHelper.caluclateCartSubtotal(listProductOrderedEntity) + 10}\$',
+                                  '${CartPriceHelper.caluclateCartSubtotal(products) + 10}\$',
                               style: const TextStyle(
                                   fontSize: 16,
                                   color: AppColors.white,

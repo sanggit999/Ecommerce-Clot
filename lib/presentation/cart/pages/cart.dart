@@ -34,16 +34,16 @@ class CartPage extends StatelessWidget {
           }
 
           if (state is CartProductDisplayLoaded) {
-            return state.productOrderedEntity.isEmpty
+            return state.products.isEmpty
                 ? Center(
                     child: _noCartResult(),
                   )
                 : Stack(
                     children: [
-                      _product(state.productOrderedEntity),
+                      _product(state.products),
                       Align(
                         alignment: Alignment.bottomCenter,
-                        child: Checkout(listProductOrderedEntity: state.productOrderedEntity),
+                        child: Checkout(products: state.products),
                       )
                     ],
                   );
